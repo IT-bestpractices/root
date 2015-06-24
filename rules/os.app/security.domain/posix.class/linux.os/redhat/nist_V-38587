@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38587", 
+      "C-46144r1_chk", 
+      "F-43535r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if the \"telnet-server\" package is installed: \n\n# rpm -q telnet-server\n\n\nIf the package is installed, this is a finding.", 
+      "fix": "The \"telnet-server\" package can be uninstalled with the following command: \n\n# yum erase telnet-server", 
+      "long_description": "Removing the \"telnet-server\" package decreases the risk of the unencrypted telnet service's accidental (or intentional) activation.\n\nMitigation:  If the telnet-server package is configured to only allow encrypted sessions, such as with Kerberos or the use of encrypted network tunnels, the risk of exposing sensitive information is mitigated.", 
+      "short_description": "The telnet-server package must not be installed."
+    }
+  }
+}

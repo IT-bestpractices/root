@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38495", 
+      "C-46053r1_chk", 
+      "F-43443r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to check the owner of the system audit logs: \n\ngrep \"^log_file\" /etc/audit/auditd.conf|sed s/^[^\\/]*//|xargs stat -c %U:%n\n\nAudit logs must be owned by root. \nIf they are not, this is a finding.", 
+      "fix": "Change the owner of the audit log files with the following command: \n\n# chown root [audit_file]", 
+      "long_description": "If non-privileged users can write to audit logs, audit trails can be modified or destroyed.", 
+      "short_description": "Audit log files must be owned by root."
+    }
+  }
+}

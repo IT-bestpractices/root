@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38480", 
+      "C-46035r1_chk", 
+      "F-43425r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the password warning age, run the command: \n\n$ grep PASS_WARN_AGE /etc/login.defs\n\nThe DoD requirement is 7. \nIf it is not set to the required value, this is a finding.", 
+      "fix": "To specify how many days prior to password expiration that a warning will be issued to users, edit the file \"/etc/login.defs\" and add or correct the following line, replacing [DAYS] appropriately: \n\nPASS_WARN_AGE [DAYS]\n\nThe DoD requirement is 7.", 
+      "long_description": "Setting the password warning age enables users to make the change at a practical time.", 
+      "short_description": "Users must be warned 7 days in advance of password expiration."
+    }
+  }
+}

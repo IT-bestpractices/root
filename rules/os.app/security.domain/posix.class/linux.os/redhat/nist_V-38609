@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38609", 
+      "C-46166r2_chk", 
+      "F-43557r4_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check that the \"tftp\" service is disabled in system boot configuration, run the following command:\n\n# chkconfig \"tftp\" --list\n\nOutput should indicate the \"tftp\" service has either not been installed, or has been disabled, as shown in the example below:\n\n# chkconfig \"tftp\" --list\ntftp off\nOR\nerror reading information on service tftp: No such file or directory\n\n\nIf the service is running, this is a finding.", 
+      "fix": "The \"tftp\" service should be disabled. The \"tftp\" service can be disabled with the following command: \n\n# chkconfig tftp off", 
+      "long_description": "Disabling the \"tftp\" service ensures the system is not acting as a tftp server, which does not provide encryption or authentication.", 
+      "short_description": "The TFTP service must not be running."
+    }
+  }
+}

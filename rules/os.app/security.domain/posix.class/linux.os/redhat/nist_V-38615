@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38615", 
+      "C-46173r1_chk", 
+      "F-43563r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine how the SSH daemon's \"Banner\" option is set, run the following command: \n\n# grep -i Banner /etc/ssh/sshd_config\n\nIf a line indicating /etc/issue is returned, then the required value is set. \nIf the required value is not set, this is a finding.", 
+      "fix": "To enable the warning banner and ensure it is consistent across the system, add or correct the following line in \"/etc/ssh/sshd_config\": \n\nBanner /etc/issue\n\nAnother section contains information on how to create an appropriate system-wide warning banner.", 
+      "long_description": "The warning message reinforces policy awareness during the logon process and facilitates possible legal action against attackers. Alternatively, systems whose ownership should not be obvious should ensure usage of a banner that does not provide easy attribution.", 
+      "short_description": "The SSH daemon must be configured with the Department of Defense (DoD) login banner."
+    }
+  }
+}

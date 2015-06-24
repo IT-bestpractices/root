@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38493", 
+      "C-46050r1_chk", 
+      "F-43440r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to check the mode of the system audit directories: \n\ngrep \"^log_file\" /etc/audit/auditd.conf|sed 's/^[^/]*//; s/[^/]*$//'|xargs stat -c %a:%n\n\nAudit directories must be mode 0755 or less permissive. \nIf any are more permissive, this is a finding.", 
+      "fix": "Change the mode of the audit log directories with the following command: \n\n# chmod go-w [audit_directory]", 
+      "long_description": "If users can delete audit logs, audit trails can be modified or destroyed.", 
+      "short_description": "Audit log directories must have mode 0755 or less permissive."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38603", 
+      "C-46161r1_chk", 
+      "F-43551r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if the \"ypserv\" package is installed: \n\n# rpm -q ypserv\n\n\nIf the package is installed, this is a finding.", 
+      "fix": "The \"ypserv\" package can be uninstalled with the following command: \n\n# yum erase ypserv", 
+      "long_description": "Removing the \"ypserv\" package decreases the risk of the accidental (or intentional) activation of NIS or NIS+ services.", 
+      "short_description": "The ypserv package must not be installed."
+    }
+  }
+}

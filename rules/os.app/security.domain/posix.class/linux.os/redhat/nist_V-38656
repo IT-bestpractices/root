@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38656", 
+      "C-46217r1_chk", 
+      "F-43606r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify that Samba clients running smbclient must use packet signing, run the following command: \n\n# grep signing /etc/samba/smb.conf\n\nThe output should show: \n\nclient signing = mandatory\n\n\nIf it is not, this is a finding.", 
+      "fix": "To require samba clients running \"smbclient\" to use packet signing, add the following to the \"[global]\" section of the Samba configuration file in \"/etc/samba/smb.conf\": \n\nclient signing = mandatory\n\nRequiring samba clients such as \"smbclient\" to use packet signing ensures they can only communicate with servers that support packet signing.", 
+      "long_description": "Packet signing can prevent man-in-the-middle attacks which modify SMB packets in transit.", 
+      "short_description": "The system must use SMB client signing for connecting to samba servers using smbclient."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38464", 
+      "C-46020r1_chk", 
+      "F-43410r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Inspect \"/etc/audit/auditd.conf\" and locate the following line to determine if the system is configured to take appropriate action when disk errors occur:\n\n# grep disk_error_action /etc/audit/auditd.conf\ndisk_error_action = [ACTION]\n\n\nIf the system is configured to \"suspend\" when disk errors occur or \"ignore\" them, this is a finding.", 
+      "fix": "Edit the file \"/etc/audit/auditd.conf\". Modify the following line, substituting [ACTION] appropriately: \n\ndisk_error_action = [ACTION]\n\nPossible values for [ACTION] are described in the \"auditd.conf\" man page. These include: \n\n\"ignore\"\n\"syslog\"\n\"exec\"\n\"suspend\"\n\"single\"\n\"halt\"\n\n\nSet this to \"syslog\", \"exec\", \"single\", or \"halt\".", 
+      "long_description": "Taking appropriate action in case of disk errors will minimize the possibility of losing audit records.", 
+      "short_description": "The audit system must take appropriate action when there are disk errors on the audit storage volume."
+    }
+  }
+}

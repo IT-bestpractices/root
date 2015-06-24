@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38638", 
+      "C-46198r3_chk", 
+      "F-43587r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the GConf2 package is not installed, this is not applicable. \n\nTo check the status of the idle screen lock activation, run the following command: \n\n$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome-screensaver/lock_enabled\n\nIf properly configured, the output should be \"true\". \nIf it is not, this is a finding.", 
+      "fix": "Run the following command to activate locking of the screensaver in the GNOME desktop when it is activated: \n\n# gconftool-2 --direct \\\n--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \\\n--type bool \\\n--set /apps/gnome-screensaver/lock_enabled true", 
+      "long_description": "Enabling the activation of the screen lock after an idle period ensures password entry will be required in order to access the system, preventing access by passersby.", 
+      "short_description": "The graphical desktop environment must have automatic lock enabled."
+    }
+  }
+}

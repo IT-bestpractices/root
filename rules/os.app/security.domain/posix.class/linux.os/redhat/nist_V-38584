@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38584", 
+      "C-46142r1_chk", 
+      "F-43532r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If network services are using the xinetd service, this is not applicable.\n\nRun the following command to determine if the \"xinetd\" package is installed: \n\n# rpm -q xinetd\n\n\nIf the package is installed, this is a finding.", 
+      "fix": "The \"xinetd\" package can be uninstalled with the following command: \n\n# yum erase xinetd", 
+      "long_description": "Removing the \"xinetd\" package decreases the risk of the xinetd service's accidental (or intentional) activation.", 
+      "short_description": "The xinetd service must be uninstalled if no network services utilizing it are enabled."
+    }
+  }
+}

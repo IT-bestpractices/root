@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38588", 
+      "C-46146r1_chk", 
+      "F-43536r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check whether interactive boot is disabled, run the following command: \n\n$ grep PROMPT /etc/sysconfig/init\n\nIf interactive boot is disabled, the output will show: \n\nPROMPT=no\n\n\nIf it does not, this is a finding.", 
+      "fix": "To disable the ability for users to perform interactive startups, edit the file \"/etc/sysconfig/init\". Add or correct the line: \n\nPROMPT=no\n\nThe \"PROMPT\" option allows the console user to perform an interactive system startup, in which it is possible to select the set of services which are started on boot.", 
+      "long_description": "Using interactive boot, the console user could disable auditing, firewalls, or other services, weakening system security.", 
+      "short_description": "The system must not permit interactive boot."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38470", 
+      "C-46025r3_chk", 
+      "F-43415r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Inspect \"/etc/audit/auditd.conf\" and locate the following line to determine if the system is configured to email the administrator when disk space is starting to run low: \n\n# grep space_left_action /etc/audit/auditd.conf\nspace_left_action = email\n\n\nIf the system is not configured to send an email to the system administrator when disk space is starting to run low, this is a finding.  The \"syslog\" option is acceptable when it can be demonstrated that the local log management infrastructure notifies an appropriate administrator in a timely manner.", 
+      "fix": "The \"auditd\" service can be configured to take an action when disk space starts to run low. Edit the file \"/etc/audit/auditd.conf\". Modify the following line, substituting [ACTION] appropriately: \n\nspace_left_action = [ACTION]\n\nPossible values for [ACTION] are described in the \"auditd.conf\" man page. These include: \n\n\"ignore\"\n\"syslog\"\n\"email\"\n\"exec\"\n\"suspend\"\n\"single\"\n\"halt\"\n\n\nSet this to \"email\" (instead of the default, which is \"suspend\") as it is more likely to get prompt attention.  The \"syslog\" option is acceptable, provided the local log management infrastructure notifies an appropriate administrator in a timely manner.\n\nRHEL-06-000521 ensures that the email generated through the operation \"space_left_action\" will be sent to an administrator.", 
+      "long_description": "Notifying administrators of an impending disk space problem may allow them to take corrective action prior to any disruption.", 
+      "short_description": "The audit system must alert designated staff members when the audit storage volume approaches capacity."
+    }
+  }
+}

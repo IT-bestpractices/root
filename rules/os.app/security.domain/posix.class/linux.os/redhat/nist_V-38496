@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38496", 
+      "C-46052r2_chk", 
+      "F-43442r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To obtain a listing of all users and the contents of their shadow password field, run the command: \n\n$ awk -F: '$1 !~ /^root$/ && $2 !~ /^[!*]/ {print $1 \":\" $2}' /etc/shadow\n\nIdentify the operating system accounts from this listing. These will primarily be the accounts with UID numbers less than 500, other than root. \n\nIf any default operating system account (other than root) has a valid password hash, this is a finding.", 
+      "fix": "Some accounts are not associated with a human user of the system, and exist to perform some administrative function. An attacker should not be able to log into these accounts. \n\nDisable logon access to these accounts with the command: \n\n# passwd -l [SYSACCT]", 
+      "long_description": "Disabling authentication for default system accounts makes it more difficult for attackers to make use of them to compromise a system.", 
+      "short_description": "Default operating system accounts, other than root, must be locked."
+    }
+  }
+}

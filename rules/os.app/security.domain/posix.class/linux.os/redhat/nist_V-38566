@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38566", 
+      "C-46124r1_chk", 
+      "F-43514r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify that the audit system collects unauthorized file accesses, run the following commands: \n\n# grep EACCES /etc/audit/audit.rules\n\n\n\n# grep EPERM /etc/audit/audit.rules\n\n\nIf either command lacks output, this is a finding.", 
+      "fix": "At a minimum, the audit system should collect unauthorized file accesses for all users and root. Add the following to \"/etc/audit/audit.rules\", setting ARCH to either b32 or b64 as appropriate for your system: \n\n-a always,exit -F arch=ARCH -S creat -S open -S openat -S truncate \\\n-S ftruncate -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access\n-a always,exit -F arch=ARCH -S creat -S open -S openat -S truncate \\\n-S ftruncate -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access\n-a always,exit -F arch=ARCH -S creat -S open -S openat -S truncate \\\n-S ftruncate -F exit=-EACCES -F auid=0 -k access\n-a always,exit -F arch=ARCH -S creat -S open -S openat -S truncate \\\n-S ftruncate -F exit=-EPERM -F auid=0 -k access", 
+      "long_description": "Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing these events could serve as evidence of potential system compromise.", 
+      "short_description": "The audit system must be configured to audit failed attempts to access files and programs."
+    }
+  }
+}

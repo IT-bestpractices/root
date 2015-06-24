@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38616", 
+      "C-46175r1_chk", 
+      "F-43565r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure users are not able to present environment daemons, run the following command: \n\n# grep PermitUserEnvironment /etc/ssh/sshd_config\n\nIf properly configured, output should be: \n\nPermitUserEnvironment no\n\n\nIf it is not, this is a finding.", 
+      "fix": "To ensure users are not able to present environment options to the SSH daemon, add or correct the following line in \"/etc/ssh/sshd_config\": \n\nPermitUserEnvironment no", 
+      "long_description": "SSH environment options potentially allow users to bypass access restriction in some configurations.", 
+      "short_description": "The SSH daemon must not permit user environment settings."
+    }
+  }
+}

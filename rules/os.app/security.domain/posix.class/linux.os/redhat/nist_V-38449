@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38449", 
+      "C-46004r1_chk", 
+      "F-43394r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the permissions of \"/etc/gshadow\", run the command: \n\n$ ls -l /etc/gshadow\n\nIf properly configured, the output should indicate the following permissions: \"----------\" \nIf it does not, this is a finding.", 
+      "fix": "To properly set the permissions of \"/etc/gshadow\", run the command: \n\n# chmod 0000 /etc/gshadow", 
+      "long_description": "The /etc/gshadow file contains group password hashes. Protection of this file is critical for system security.", 
+      "short_description": "The /etc/gshadow file must have mode 0000."
+    }
+  }
+}

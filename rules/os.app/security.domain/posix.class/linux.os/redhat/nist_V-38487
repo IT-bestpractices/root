@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38487", 
+      "C-46043r1_chk", 
+      "F-43433r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine whether \"yum\" has been configured to disable \"gpgcheck\" for any repos, inspect all files in \"/etc/yum.repos.d\" and ensure the following does not appear in any sections: \n\ngpgcheck=0\n\nA value of \"0\" indicates that \"gpgcheck\" has been disabled for that repo. \nIf GPG checking is disabled, this is a finding.\n\nIf the \"yum\" system package management tool is not used to update the system, verify with the SA that installed packages are cryptographically signed.", 
+      "fix": "To ensure signature checking is not disabled for any repos, remove any lines from files in \"/etc/yum.repos.d\" of the form: \n\ngpgcheck=0", 
+      "long_description": "Ensuring all packages' cryptographic signatures are valid prior to installation ensures the provenance of the software and protects against malicious tampering.", 
+      "short_description": "The system package management tool must cryptographically verify the authenticity of all software packages during installation."
+    }
+  }
+}

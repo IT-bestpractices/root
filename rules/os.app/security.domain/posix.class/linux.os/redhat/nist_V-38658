@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38658", 
+      "C-46219r1_chk", 
+      "F-43608r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify the password reuse setting is compliant, run the following command: \n\n$ grep remember /etc/pam.d/system-auth\n\nThe output should show the following at the end of the line: \n\nremember=24\n\n\nIf it does not, this is a finding.", 
+      "fix": "Do not allow users to reuse recent passwords. This can be accomplished by using the \"remember\" option for the \"pam_unix\" PAM module. In the file \"/etc/pam.d/system-auth\", append \"remember=24\" to the line which refers to the \"pam_unix.so\" module, as shown: \n\npassword sufficient pam_unix.so [existing_options] remember=24\n\nThe DoD requirement is 24 passwords.", 
+      "long_description": "Preventing reuse of previous passwords helps ensure that a compromised password is not reused by a user.", 
+      "short_description": "The system must prohibit the reuse of passwords within twenty-four iterations."
+    }
+  }
+}

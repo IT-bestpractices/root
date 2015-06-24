@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38613", 
+      "C-46171r1_chk", 
+      "F-43561r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine how the SSH daemon's \"PermitRootLogin\" option is set, run the following command: \n\n# grep -i PermitRootLogin /etc/ssh/sshd_config\n\nIf a line indicating \"no\" is returned, then the required value is set. \nIf the required value is not set, this is a finding.", 
+      "fix": "The root user should never be allowed to log in to a system directly over a network. To disable root login via SSH, add or correct the following line in \"/etc/ssh/sshd_config\": \n\nPermitRootLogin no", 
+      "long_description": "Permitting direct root login reduces auditable information about who ran privileged commands on the system and also allows direct attack attempts on root's password.", 
+      "short_description": "The system must not permit root logins using remote access programs such as ssh."
+    }
+  }
+}

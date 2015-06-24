@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38605", 
+      "C-46163r1_chk", 
+      "F-43553r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine the current status of the \"crond\" service: \n\n# service crond status\n\nIf the service is enabled, it should return the following: \n\ncrond is running...\n\n\nIf the service is not running, this is a finding.", 
+      "fix": "The \"crond\" service is used to execute commands at preconfigured times. It is required by almost all systems to perform necessary maintenance tasks, such as notifying root of system activity. The \"crond\" service can be enabled with the following commands: \n\n# chkconfig crond on\n# service crond start", 
+      "long_description": "Due to its usage for maintenance and security-supporting tasks, enabling the cron daemon is essential.", 
+      "short_description": "The cron service must be running."
+    }
+  }
+}

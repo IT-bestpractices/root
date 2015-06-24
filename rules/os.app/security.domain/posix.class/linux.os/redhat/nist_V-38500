@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38500", 
+      "C-46057r2_chk", 
+      "F-43447r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To list all password file entries for accounts with UID 0, run the following command: \n\n# awk -F: '($3 == 0) {print}' /etc/passwd\n\nThis should print only one line, for the user root. \nIf any account other than root has a UID of 0, this is a finding.", 
+      "fix": "If any account other than root has a UID of 0, this misconfiguration should be investigated and the accounts other than root should be removed or have their UID changed.", 
+      "long_description": "An account has root authority if it has a UID of 0. Multiple accounts with a UID of 0 afford more opportunity for potential intruders to guess a password for a privileged account. Proper configuration of sudo is recommended to afford multiple system administrators access to root privileges in an accountable manner.", 
+      "short_description": "The root account must be the only account having a UID of 0."
+    }
+  }
+}

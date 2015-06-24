@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38639", 
+      "C-46199r4_chk", 
+      "F-43588r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the GConf2 package is not installed, this is not applicable. \n\nTo ensure the screensaver is configured to be blank, run the following command: \n\n$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome-screensaver/mode\n\nIf properly configured, the output should be \"blank-only\". \nIf it is not, this is a finding.", 
+      "fix": "Run the following command to set the screensaver mode in the GNOME desktop to a blank screen: \n\n# gconftool-2 \\\n--direct \\\n--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \\\n--type string \\\n--set /apps/gnome-screensaver/mode blank-only", 
+      "long_description": "Setting the screensaver mode to blank-only conceals the contents of the display from passersby.", 
+      "short_description": "The system must display a publicly-viewable pattern during a graphical desktop environment session lock."
+    }
+  }
+}

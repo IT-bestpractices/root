@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38594", 
+      "C-46152r2_chk", 
+      "F-43542r3_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check that the \"rsh\" service is disabled in system boot configuration, run the following command:\n\n# chkconfig \"rsh\" --list\n\nOutput should indicate the \"rsh\" service has either not been installed, or has been disabled, as shown in the example below:\n\n# chkconfig \"rsh\" --list\nrsh off\nOR\nerror reading information on service rsh: No such file or directory\n\n\nIf the service is running, this is a finding.", 
+      "fix": "The \"rsh\" service, which is available with the \"rsh-server\" package and runs as a service through xinetd, should be disabled. The \"rsh\" service can be disabled with the following command: \n\n# chkconfig rsh off", 
+      "long_description": "The rsh service uses unencrypted network communications, which means that data from the login session, including passwords and all other information transmitted during the session, can be stolen by eavesdroppers on the network.", 
+      "short_description": "The rshd service must not be running."
+    }
+  }
+}

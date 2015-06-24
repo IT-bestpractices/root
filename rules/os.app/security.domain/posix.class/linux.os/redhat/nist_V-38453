@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38453", 
+      "C-46009r1_chk", 
+      "F-43399r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "The following command will list which files on the system have group-ownership different from what is expected by the RPM database: \n\n# rpm -Va | grep '^......G'\n\n\nIf there is output, this is a finding.", 
+      "fix": "The RPM package management system can restore group-ownership of the package files and directories. The following command will update files and directories with group-ownership different from what is expected by the RPM database: \n\n# rpm -qf [file or directory name]\n# rpm --setugids [package]", 
+      "long_description": "Group-ownership of system binaries and configuration files that is incorrect could allow an unauthorized user to gain privileges that they should not have. The group-ownership set by the vendor should be maintained. Any deviations from this baseline should be investigated.", 
+      "short_description": "The system package management tool must verify group-ownership on all files and directories associated with packages."
+    }
+  }
+}

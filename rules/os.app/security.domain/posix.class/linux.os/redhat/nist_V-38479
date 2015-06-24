@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38479", 
+      "C-46034r1_chk", 
+      "F-43424r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the maximum password age, run the command: \n\n$ grep PASS_MAX_DAYS /etc/login.defs\n\nThe DoD requirement is 60. \nIf it is not set to the required value, this is a finding.", 
+      "fix": "To specify password maximum age for new accounts, edit the file \"/etc/login.defs\" and add or correct the following line, replacing [DAYS] appropriately: \n\nPASS_MAX_DAYS [DAYS]\n\nThe DoD requirement is 60.", 
+      "long_description": "Setting the password maximum age ensures users are required to periodically change their passwords. This could possibly decrease the utility of a stolen password. Requiring shorter password lifetimes increases the risk of users writing down the password in a convenient location subject to physical compromise.", 
+      "short_description": "User passwords must be changed at least every 60 days."
+    }
+  }
+}

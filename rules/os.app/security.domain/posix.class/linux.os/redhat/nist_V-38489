@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38489", 
+      "C-46046r1_chk", 
+      "F-43436r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If another file integrity tool is installed, this is not a finding.\n\nRun the following command to determine if the \"aide\" package is installed: \n\n# rpm -q aide\n\n\nIf the package is not installed, this is a finding.", 
+      "fix": "Install the AIDE package with the command: \n\n# yum install aide", 
+      "long_description": "The AIDE package must be installed if it is to be available for integrity checking.", 
+      "short_description": "A file integrity tool must be installed."
+    }
+  }
+}

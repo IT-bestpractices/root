@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38586", 
+      "C-46145r1_chk", 
+      "F-43534r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check if authentication is required for single-user mode, run the following command: \n\n$ grep SINGLE /etc/sysconfig/init\n\nThe output should be the following: \n\nSINGLE=/sbin/sulogin\n\n\nIf the output is different, this is a finding.", 
+      "fix": "Single-user mode is intended as a system recovery method, providing a single user root access to the system by providing a boot option at startup. By default, no authentication is performed if single-user mode is selected. \n\nTo require entry of the root password even if the system is started in single-user mode, add or correct the following line in the file \"/etc/sysconfig/init\": \n\nSINGLE=/sbin/sulogin", 
+      "long_description": "This prevents attackers with physical access from trivially bypassing security on the machine and gaining root access. Such accesses are further prevented by configuring the bootloader password.", 
+      "short_description": "The system must require authentication upon booting into single-user and maintenance modes."
+    }
+  }
+}

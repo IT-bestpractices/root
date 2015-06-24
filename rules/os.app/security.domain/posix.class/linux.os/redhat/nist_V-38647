@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38647", 
+      "C-46207r1_chk", 
+      "F-43596r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Verify the \"umask\" setting is configured correctly in the \"/etc/profile\" file by running the following command: \n\n# grep \"umask\" /etc/profile\n\nAll output must show the value of \"umask\" set to 077, as shown in the below: \n\n# grep \"umask\" /etc/profile\numask 077\n\n\nIf the above command returns no output, or if the umask is configured incorrectly, this is a finding.", 
+      "fix": "To ensure the default umask controlled by \"/etc/profile\" is set properly, add or correct the \"umask\" setting in \"/etc/profile\" to read as follows: \n\numask 077", 
+      "long_description": "The umask value influences the permissions assigned to files when they are created. A misconfigured umask value could result in files with excessive permissions that can be read and/or written to by unauthorized users.", 
+      "short_description": "The system default umask in /etc/profile must be 077."
+    }
+  }
+}

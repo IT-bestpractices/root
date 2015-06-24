@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38459", 
+      "C-46014r1_chk", 
+      "F-43404r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the group ownership of \"/etc/group\", run the command: \n\n$ ls -l /etc/group\n\nIf properly configured, the output should indicate the following group-owner. \"root\" \nIf it does not, this is a finding.", 
+      "fix": "To properly set the group owner of \"/etc/group\", run the command: \n\n# chgrp root /etc/group", 
+      "long_description": "The \"/etc/group\" file contains information regarding groups that are configured on the system. Protection of this file is important for system security.", 
+      "short_description": "The /etc/group file must be group-owned by root."
+    }
+  }
+}

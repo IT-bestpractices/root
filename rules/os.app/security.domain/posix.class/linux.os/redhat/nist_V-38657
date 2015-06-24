@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38657", 
+      "C-46218r4_chk", 
+      "F-43607r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If Samba is not in use, this is not applicable.\n\nTo verify that Samba clients using mount.cifs must use packet signing, run the following command: \n\n# grep sec /etc/fstab /etc/mtab\n\nThe output should show either \"krb5i\" or \"ntlmv2i\" in use. \nIf it does not, this is a finding.", 
+      "fix": "Require packet signing of clients who mount Samba shares using the \"mount.cifs\" program (e.g., those who specify shares in \"/etc/fstab\"). To do so, ensure signing options (either \"sec=krb5i\" or \"sec=ntlmv2i\") are used. \n\nSee the \"mount.cifs(8)\" man page for more information. A Samba client should only communicate with servers who can support SMB packet signing.", 
+      "long_description": "Packet signing can prevent man-in-the-middle attacks which modify SMB packets in transit.", 
+      "short_description": "The system must use SMB client signing for connecting to samba servers using mount.cifs."
+    }
+  }
+}

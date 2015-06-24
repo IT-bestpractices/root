@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38675", 
+      "C-46235r2_chk", 
+      "F-43624r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify that core dumps are disabled for all users, run the following command:\n\n$ grep core /etc/security/limits.conf /etc/security/limits.d/*.conf\n\nThe output should be:\n\n* hard core 0\n\nIf it is not, this is a finding.", 
+      "fix": "To disable core dumps for all users, add the following line to \"/etc/security/limits.conf\": \n\n* hard core 0", 
+      "long_description": "A core dump includes a memory image taken at the time the operating system terminates an application. The memory image could contain sensitive data and is generally useful only for developers trying to debug problems.", 
+      "short_description": "Process core dumps must be disabled unless needed."
+    }
+  }
+}

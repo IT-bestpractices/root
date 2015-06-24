@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38606", 
+      "C-46164r1_chk", 
+      "F-43554r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if the \"tftp-server\" package is installed: \n\n# rpm -q tftp-server\n\n\nIf the package is installed, this is a finding.", 
+      "fix": "The \"tftp-server\" package can be removed with the following command: \n\n# yum erase tftp-server", 
+      "long_description": "Removing the \"tftp-server\" package decreases the risk of the accidental (or intentional) activation of tftp services.", 
+      "short_description": "The tftp-server package must not be installed unless required."
+    }
+  }
+}

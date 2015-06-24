@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38501", 
+      "C-46058r2_chk", 
+      "F-43448r4_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure the failed password attempt policy is configured correctly, run the following command:\n\n$ grep pam_faillock /etc/pam.d/system-auth /etc/pam.d/password-auth\n\nFor each file, the output should show \"fail_interval=<interval-in-seconds>\" where \"interval-in-seconds\" is 900 (15 minutes) or greater. If the \"fail_interval\" parameter is not set, the default setting of 900 seconds is acceptable. If that is not the case, this is a finding.", 
+      "fix": "Utilizing \"pam_faillock.so\", the \"fail_interval\" directive configures the system to lock out accounts after a number of incorrect logon attempts.\n\nAdd the following \"fail_interval\" directives to \"pam_faillock.so\" immediately below the \"pam_unix.so\" statement in \"/etc/pam.d/system-auth\" and \"/etc/pam.d/password-auth\":\n\nauth [default=die] pam_faillock.so authfail deny=3 unlock_time=604800 fail_interval=900\n\nauth required pam_faillock.so authsucc deny=3 unlock_time=604800 fail_interval=900", 
+      "long_description": "Locking out user accounts after a number of incorrect attempts within a specific period of time prevents direct password guessing attacks.", 
+      "short_description": "The system must disable accounts after excessive login failures within a 15-minute interval."
+    }
+  }
+}

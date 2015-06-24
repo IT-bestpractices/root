@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38590", 
+      "C-46148r1_chk", 
+      "F-43538r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if the \"screen\" package is installed: \n\n# rpm -q screen\n\n\nIf the package is not installed, this is a finding.", 
+      "fix": "To enable console screen locking when in text mode, install the \"screen\" package: \n\n# yum install screen\n\nInstruct users to begin new terminal sessions with the following command: \n\n$ screen\n\nThe console can now be locked with the following key combination: \n\nctrl+a x", 
+      "long_description": "Installing \"screen\" ensures a console locking capability is available for users who may need to suspend console logins.", 
+      "short_description": "The system must allow locking of the console screen in text mode."
+    }
+  }
+}

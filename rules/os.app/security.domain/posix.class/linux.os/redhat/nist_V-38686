@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38686", 
+      "C-46248r1_chk", 
+      "F-43635r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to ensure the default \"FORWARD\" policy is \"DROP\": \n\ngrep \":FORWARD\" /etc/sysconfig/iptables\n\nThe output must be the following: \n\n# grep \":FORWARD\" /etc/sysconfig/iptables\n:FORWARD DROP [0:0]\n\nIf it is not, this is a finding.", 
+      "fix": "To set the default policy to DROP (instead of ACCEPT) for the built-in FORWARD chain which processes packets that will be forwarded from one interface to another, add or correct the following line in \"/etc/sysconfig/iptables\": \n\n:FORWARD DROP [0:0]", 
+      "long_description": "In \"iptables\" the default policy is applied only after all the applicable rules in the table are examined for a match. Setting the default policy to \"DROP\" implements proper design for a firewall, i.e., any packets which are not explicitly permitted should not be accepted.", 
+      "short_description": "The systems local firewall must implement a deny-all, allow-by-exception policy for forwarded packets."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38523", 
+      "C-46081r3_chk", 
+      "F-43471r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "The status of the \"net.ipv4.conf.all.accept_source_route\" kernel parameter can be queried by running the following command:\n\n$ sysctl net.ipv4.conf.all.accept_source_route\n\nThe output of the command should indicate a value of \"0\". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in \"/etc/sysctl.conf\".\n\n$ grep net.ipv4.conf.all.accept_source_route /etc/sysctl.conf\n\nIf the correct value is not returned, this is a finding.", 
+      "fix": "To set the runtime status of the \"net.ipv4.conf.all.accept_source_route\" kernel parameter, run the following command: \n\n# sysctl -w net.ipv4.conf.all.accept_source_route=0\n\nIf this is not the system's default value, add the following line to \"/etc/sysctl.conf\": \n\nnet.ipv4.conf.all.accept_source_route = 0", 
+      "long_description": "Accepting source-routed packets in the IPv4 protocol has few legitimate uses. It should be disabled unless it is absolutely required.", 
+      "short_description": "The system must not accept IPv4 source-routed packets on any interface."
+    }
+  }
+}

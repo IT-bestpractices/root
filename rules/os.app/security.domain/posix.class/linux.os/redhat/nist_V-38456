@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38456", 
+      "C-46011r2_chk", 
+      "F-43401r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if \"/var\" is on its own partition or logical volume: \n\n$ mount | grep \"on /var \"\n\nIf \"/var\" has its own partition or volume group, a line will be returned. \nIf no line is returned, this is a finding.", 
+      "fix": "The \"/var\" directory is used by daemons and other system services to store frequently-changing data. Ensure that \"/var\" has its own partition or logical volume at installation time, or migrate it using LVM.", 
+      "long_description": "Ensuring that \"/var\" is mounted on its own partition enables the setting of more restrictive mount options. This helps protect system services such as daemons or other programs which use it. It is not uncommon for the \"/var\" directory to contain world-writable directories, installed by other software packages.", 
+      "short_description": "The system must use a separate file system for /var."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38655", 
+      "C-46216r1_chk", 
+      "F-43605r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify that binaries cannot be directly executed from removable media, run the following command: \n\n# grep noexec /etc/fstab\n\nThe output should show \"noexec\" in use. \nIf it does not, this is a finding.", 
+      "fix": "The \"noexec\" mount option prevents the direct execution of binaries on the mounted filesystem. Users should not be allowed to execute binaries that exist on partitions mounted from removable media (such as a USB key). The \"noexec\" option prevents code from being executed directly from the media itself, and may therefore provide a line of defense against certain types of worms or malicious code. Add the \"noexec\" option to the fourth column of \"/etc/fstab\" for the line which controls mounting of any removable media partitions.", 
+      "long_description": "Allowing users to execute binaries from removable media such as USB keys exposes the system to potential compromise.", 
+      "short_description": "The noexec option must be added to removable media partitions."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38457", 
+      "C-46007r1_chk", 
+      "F-43397r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the permissions of \"/etc/passwd\", run the command: \n\n$ ls -l /etc/passwd\n\nIf properly configured, the output should indicate the following permissions: \"-rw-r--r--\" \nIf it does not, this is a finding.", 
+      "fix": "To properly set the permissions of \"/etc/passwd\", run the command: \n\n# chmod 0644 /etc/passwd", 
+      "long_description": "If the \"/etc/passwd\" file is writable by a group-owner or the world the risk of its compromise is increased. The file contains the list of accounts on the system and associated information, and protection of this file is critical for system security.", 
+      "short_description": "The /etc/passwd file must have mode 0644 or less permissive."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38591", 
+      "C-46149r1_chk", 
+      "F-43539r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if the \"rsh-server\" package is installed: \n\n# rpm -q rsh-server\n\n\nIf the package is installed, this is a finding.", 
+      "fix": "The \"rsh-server\" package can be uninstalled with the following command: \n\n# yum erase rsh-server", 
+      "long_description": "The \"rsh-server\" package provides several obsolete and insecure network services. Removing it decreases the risk of those services' accidental (or intentional) activation.", 
+      "short_description": "The rsh-server package must not be installed."
+    }
+  }
+}

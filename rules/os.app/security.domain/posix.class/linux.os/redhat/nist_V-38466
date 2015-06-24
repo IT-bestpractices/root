@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38466", 
+      "C-46021r1_chk", 
+      "F-43411r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default: \n\n/lib\n/lib64\n/usr/lib\n/usr/lib64\n\n\nKernel modules, which can be added to the kernel during runtime, are stored in \"/lib/modules\". All files in these directories should not be group-writable or world-writable.  To find shared libraries that are not owned by \"root\", run the following command for each directory [DIR] which contains shared libraries: \n\n$ find -L [DIR] \\! -user root\n\n\nIf any of these files are not owned by root, this is a finding.", 
+      "fix": "System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default: \n\n/lib\n/lib64\n/usr/lib\n/usr/lib64\n\nIf any file in these directories is found to be owned by a user other than root, correct its ownership with the following command: \n\n# chown root [FILE]", 
+      "long_description": "Files from shared library directories are loaded into the address space of processes (including privileged ones) or of the kernel itself at runtime. Proper ownership is necessary to protect the integrity of the system.", 
+      "short_description": "Library files must be owned by root."
+    }
+  }
+}

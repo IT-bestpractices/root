@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38541", 
+      "C-46099r1_chk", 
+      "F-43489r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine if the system is configured to audit changes to its SELinux configuration files, run the following command: \n\n# auditctl -l | grep \"dir=/etc/selinux\"\n\nIf the system is configured to watch for changes to its SELinux configuration, a line should be returned (including \"perm=wa\" indicating permissions that are watched). \nIf the system is not configured to audit attempts to change the MAC policy, this is a finding.", 
+      "fix": "Add the following to \"/etc/audit/audit.rules\": \n\n-w /etc/selinux/ -p wa -k MAC-policy", 
+      "long_description": "The system's mandatory access policy (SELinux) should not be arbitrarily changed by anything other than administrator action. All changes to MAC policy should be audited.", 
+      "short_description": "The audit system must be configured to audit modifications to the systems Mandatory Access Control (MAC) configuration (SELinux)."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38642", 
+      "C-46203r1_chk", 
+      "F-43592r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the value of the \"umask\", run the following command: \n\n$ grep umask /etc/init.d/functions\n\nThe output should show either \"022\" or \"027\". \nIf it does not, this is a finding.", 
+      "fix": "The file \"/etc/init.d/functions\" includes initialization parameters for most or all daemons started at boot time. The default umask of 022 prevents creation of group- or world-writable files. To set the default umask for daemons, edit the following line, inserting 022 or 027 for [UMASK] appropriately: \n\numask [UMASK]\n\nSetting the umask to too restrictive a setting can cause serious errors at runtime. Many daemons on the system already individually restrict themselves to a umask of 077 in their own init scripts.", 
+      "long_description": "The umask influences the permissions assigned to files created by a process at run time. An unnecessarily permissive umask could result in files being created with insecure permissions.", 
+      "short_description": "The system default umask for daemons must be 027 or 022."
+    }
+  }
+}

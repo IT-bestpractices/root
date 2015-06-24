@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38460", 
+      "C-46016r1_chk", 
+      "F-43405r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the NFS server is read-only, in support of unrestricted access to organizational content, this is not applicable.\n\nThe related \"root_squash\" option provides protection against remote administrator-level access to NFS server content.  Its use is not a finding.\n\nTo verify the \"all_squash\" option has been disabled, run the following command:\n\n# grep all_squash /etc/exports\n\n\nIf there is output, this is a finding.", 
+      "fix": "Remove any instances of the \"all_squash\" option from the file \"/etc/exports\".  Restart the NFS daemon for the changes to take effect.\n\n# service nfs restart", 
+      "long_description": "The \"all_squash\" option maps all client requests to a single anonymous uid/gid on the NFS server, negating the ability to track file access by user ID.", 
+      "short_description": "The NFS server must not have the all_squash option enabled."
+    }
+  }
+}

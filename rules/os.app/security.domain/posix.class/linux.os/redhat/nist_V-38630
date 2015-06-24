@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38630", 
+      "C-46189r3_chk", 
+      "F-43579r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the GConf2 package is not installed, this is not applicable.\n\nTo check the screensaver mandatory use status, run the following command: \n\n$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome-screensaver/idle_activation_enabled\n\nIf properly configured, the output should be \"true\". \n\nIf it is not, this is a finding.", 
+      "fix": "Run the following command to activate the screensaver in the GNOME desktop after a period of inactivity: \n\n# gconftool-2 --direct \\\n--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \\\n--type bool \\\n--set /apps/gnome-screensaver/idle_activation_enabled true", 
+      "long_description": "Enabling idle activation of the screen saver ensures the screensaver will be activated after the idle delay. Applications requiring continuous, real-time screen display (such as network management products) require the login session does not have administrator rights and the display station is located in a controlled-access area.", 
+      "short_description": "The graphical desktop environment must automatically lock after 15 minutes of inactivity and the system must require user reauthentication to unlock the environment."
+    }
+  }
+}

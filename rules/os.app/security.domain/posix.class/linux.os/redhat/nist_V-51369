@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-51369", 
+      "C-53711r1_chk", 
+      "F-56171r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Check the file \"/etc/selinux/config\" and ensure the following line appears:\n\nSELINUXTYPE=targeted\n\nIf it does not, this is a finding.", 
+      "fix": "The SELinux \"targeted\" policy is appropriate for general-purpose desktops and servers, as well as systems in many other roles. To configure the system to use this policy, add or correct the following line in \"/etc/selinux/config\":\n\nSELINUXTYPE=targeted\n\nOther policies, such as \"mls\", provide additional security labeling and greater confinement but are not compatible with many general-purpose use cases.", 
+      "long_description": "Setting the SELinux policy to \"targeted\" or a more specialized policy ensures the system will confine processes that are likely to be targeted for exploitation, such as network or system services. ", 
+      "short_description": "The system must use a Linux Security Module configured to limit the privileges of system services."
+    }
+  }
+}

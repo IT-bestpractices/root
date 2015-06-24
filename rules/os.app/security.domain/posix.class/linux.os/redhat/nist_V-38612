@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38612", 
+      "C-46170r1_chk", 
+      "F-43560r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine how the SSH daemon's \"HostbasedAuthentication\" option is set, run the following command: \n\n# grep -i HostbasedAuthentication /etc/ssh/sshd_config\n\nIf no line, a commented line, or a line indicating the value \"no\" is returned, then the required value is set. \nIf the required value is not set, this is a finding.", 
+      "fix": "SSH's cryptographic host-based authentication is more secure than \".rhosts\" authentication, since hosts are cryptographically authenticated. However, it is not recommended that hosts unilaterally trust one another, even within an organization. \n\nTo disable host-based authentication, add or correct the following line in \"/etc/ssh/sshd_config\": \n\nHostbasedAuthentication no", 
+      "long_description": "SSH trust relationships mean a compromise on one host can allow an attacker to move trivially to other hosts.", 
+      "short_description": "The SSH daemon must not allow host-based authentication."
+    }
+  }
+}

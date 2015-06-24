@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38580", 
+      "C-46138r3_chk", 
+      "F-43528r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine if the system is configured to audit execution of module management programs, run the following commands:\n\n$ sudo egrep -e \"(-w |-F path=)/sbin/insmod\" /etc/audit/audit.rules\n$ sudo egrep -e \"(-w |-F path=)/sbin/rmmod\" /etc/audit/audit.rules\n$ sudo egrep -e \"(-w |-F path=)/sbin/modprobe\" /etc/audit/audit.rules\n\nIf the system is configured to audit this activity, it will return a line.\n\nTo determine if the system is configured to audit calls to the \"init_module\" system call, run the following command:\n\n$ sudo grep -w \"init_module\" /etc/audit/audit.rules\n\nIf the system is configured to audit this activity, it will return a line. \n\nTo determine if the system is configured to audit calls to the \"delete_module\" system call, run the following command:\n\n$ sudo grep -w \"delete_module\" /etc/audit/audit.rules\n\nIf the system is configured to audit this activity, it will return a line. \n\nIf no line is returned for any of these commands, this is a finding.", 
+      "fix": "Add the following to \"/etc/audit/audit.rules\" in order to capture kernel module loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system: \n\n-w /sbin/insmod -p x -k modules\n-w /sbin/rmmod -p x -k modules\n-w /sbin/modprobe -p x -k modules\n-a always,exit -F arch=[ARCH] -S init_module -S delete_module -k modules", 
+      "long_description": "The addition/removal of kernel modules can be used to alter the behavior of the kernel and potentially introduce malicious code into kernel space. It is important to have an audit trail of modules that have been introduced into the kernel.", 
+      "short_description": "The audit system must be configured to audit the loading and unloading of dynamic kernel modules."
+    }
+  }
+}

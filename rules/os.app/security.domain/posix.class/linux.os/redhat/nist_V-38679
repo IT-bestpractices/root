@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38679", 
+      "C-46242r2_chk", 
+      "F-43628r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify that DHCP is not being used, examine the following file for each interface. \n\n# /etc/sysconfig/network-scripts/ifcfg-[IFACE]\n\nIf there is any network interface without a associated \"ifcfg\" file, this is a finding.\n\nLook for the following:\n\nBOOTPROTO=none\n\nAlso verify the following, substituting the appropriate values based on your site's addressing scheme:\n\nNETMASK=[local LAN netmask]\nIPADDR=[assigned IP address]\nGATEWAY=[local LAN default gateway]\n\n\nIf it does not, this is a finding.", 
+      "fix": "For each interface [IFACE] on the system (e.g. eth0), edit \"/etc/sysconfig/network-scripts/ifcfg-[IFACE]\" and make the following changes. \n\nCorrect the BOOTPROTO line to read:\n\nBOOTPROTO=none\n\n\nAdd or correct the following lines, substituting the appropriate values based on your site's addressing scheme:\n\nNETMASK=[local LAN netmask]\nIPADDR=[assigned IP address]\nGATEWAY=[local LAN default gateway]", 
+      "long_description": "DHCP relies on trusting the local network. If the local network is not trusted, then it should not be used. However, the automatic configuration provided by DHCP is commonly used and the alternative, manual configuration, presents an unacceptable burden in many circumstances.", 
+      "short_description": "The DHCP client must be disabled if not needed."
+    }
+  }
+}

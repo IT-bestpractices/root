@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38665", 
+      "C-46225r1_chk", 
+      "F-43614r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "The following command will list which audit files on the system have group-ownership different from what is expected by the RPM database: \n\n# rpm -V audit | grep '^......G'\n\n\nIf there is output, this is a finding.", 
+      "fix": "The RPM package management system can restore file group-ownership of the audit package files and directories. The following command will update audit files with group-ownership different from what is expected by the RPM database: \n\n# rpm --setugids audit", 
+      "long_description": "Group-ownership of audit binaries and configuration files that is incorrect could allow an unauthorized user to gain privileges that they should not have. The group-ownership set by the vendor should be maintained. Any deviations from this baseline should be investigated.", 
+      "short_description": "The system package management tool must verify group-ownership on all files and directories associated with the audit package."
+    }
+  }
+}

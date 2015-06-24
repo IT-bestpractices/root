@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38652", 
+      "C-46212r2_chk", 
+      "F-43601r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify the \"nodev\" option is configured for all NFS mounts, run the following command: \n\n$ mount | grep \"nfs \"\n\nAll NFS mounts should show the \"nodev\" setting in parentheses, along with other mount options. \nIf the setting does not show, this is a finding.", 
+      "fix": "Add the \"nodev\" option to the fourth column of \"/etc/fstab\" for the line which controls mounting of any NFS mounts.", 
+      "long_description": "Legitimate device files should only exist in the /dev directory. NFS mounts should not present device files to users.", 
+      "short_description": "Remote file systems must be mounted with the nodev option."
+    }
+  }
+}

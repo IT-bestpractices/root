@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38472", 
+      "C-46027r1_chk", 
+      "F-43417r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "System executables are stored in the following directories by default: \n\n/bin\n/usr/bin\n/usr/local/bin\n/sbin\n/usr/sbin\n/usr/local/sbin\n\nAll files in these directories should not be group-writable or world-writable. To find system executables that are not owned by \"root\", run the following command for each directory [DIR] which contains system executables: \n\n$ find -L [DIR] \\! -user root\n\n\nIf any system executables are found to not be owned by root, this is a finding.", 
+      "fix": "System executables are stored in the following directories by default: \n\n/bin\n/usr/bin\n/usr/local/bin\n/sbin\n/usr/sbin\n/usr/local/sbin\n\nIf any file [FILE] in these directories is found to be owned by a user other than root, correct its ownership with the following command: \n\n# chown root [FILE]", 
+      "long_description": "System binaries are executed by privileged users as well as system services, and restrictive permissions are necessary to ensure that their execution of these programs cannot be co-opted.", 
+      "short_description": "All system command files must be owned by root."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38619", 
+      "C-46179r3_chk", 
+      "F-43569r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the system for the existence of any \".netrc\" files, run the following command: \n\n$ sudo find /root /home -xdev -name .netrc\n\nIf any .netrc files exist, this is a finding.", 
+      "fix": "The \".netrc\" files contain logon information used to auto-logon into FTP servers and reside in the user's home directory. These files may contain unencrypted passwords to remote FTP servers making them susceptible to access by unauthorized users and should not be used. Any \".netrc\" files should be removed.", 
+      "long_description": "Unencrypted passwords for remote FTP servers may be stored in \".netrc\" files. DoD policy requires passwords be encrypted in storage and not used in access scripts.", 
+      "short_description": "There must be no .netrc files on the system."
+    }
+  }
+}

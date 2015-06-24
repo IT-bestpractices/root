@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38494", 
+      "C-46051r1_chk", 
+      "F-43441r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check for serial port entries which permit root login, run the following command: \n\n# grep '^ttyS[0-9]' /etc/securetty\n\nIf any output is returned, then root login over serial ports is permitted. \nIf root login over serial ports is permitted, this is a finding.", 
+      "fix": "To restrict root logins on serial ports, ensure lines of this form do not appear in \"/etc/securetty\": \n\nttyS0\nttyS1\n\nNote:  Serial port entries are not limited to those listed above.  Any lines starting with \"ttyS\" followed by numerals should be removed", 
+      "long_description": "Preventing direct root login to serial port interfaces helps ensure accountability for actions taken on the systems using the root account.", 
+      "short_description": "The system must prevent the root account from logging in from serial consoles."
+    }
+  }
+}

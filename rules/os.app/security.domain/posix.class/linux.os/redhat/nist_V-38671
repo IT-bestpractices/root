@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38671", 
+      "C-46231r1_chk", 
+      "F-43620r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if the \"sendmail\" package is installed: \n\n# rpm -q sendmail\n\n\nIf the package is installed, this is a finding.", 
+      "fix": "Sendmail is not the default mail transfer agent and is not installed by default. The \"sendmail\" package can be removed with the following command: \n\n# yum erase sendmail", 
+      "long_description": "The sendmail software was not developed with security in mind and its design prevents it from being effectively contained by SELinux. Postfix should be used instead.", 
+      "short_description": "The sendmail package must be removed."
+    }
+  }
+}

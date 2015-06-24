@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38621", 
+      "C-46180r1_chk", 
+      "F-43570r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "A remote NTP server should be configured for time synchronization. To verify one is configured, open the following file. \n\n/etc/ntp.conf\n\nIn the file, there should be a section similar to the following: \n\n# --- OUR TIMESERVERS -----\nserver [ntpserver]\n\n\nIf this is not the case, this is a finding.", 
+      "fix": "To specify a remote NTP server for time synchronization, edit the file \"/etc/ntp.conf\". Add or correct the following lines, substituting the IP or hostname of a remote NTP server for ntpserver. \n\nserver [ntpserver]\n\nThis instructs the NTP software to contact that remote server to obtain time data.", 
+      "long_description": "Synchronizing with an NTP server makes it possible to collate system logs from multiple sources or correlate computer events with real time events. Using a trusted NTP server provided by your organization is recommended.", 
+      "short_description": "The system clock must be synchronized to an authoritative DoD time source."
+    }
+  }
+}

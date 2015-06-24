@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-51391", 
+      "C-53727r1_chk", 
+      "F-56189r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To find the location of the AIDE database file, run the following command:\n\n# grep DBDIR /etc/aide.conf\n\nUsing the defined values of the [DBDIR] and [database] variables, verify the existence of the AIDE database file:\n\n# ls -l [DBDIR]/[database_file_name]\n\nIf there is no database file, this is a finding.", 
+      "fix": "Run the following command to generate a new database:\n\n# /usr/sbin/aide --init\n\nBy default, the database will be written to the file \"/var/lib/aide/aide.db.new.gz\". Storing the database, the configuration file \"/etc/aide.conf\", and the binary \"/usr/sbin/aide\" (or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity. The newly-generated database can be installed as follows:\n\n# cp /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz\n\nTo initiate a manual check, run the following command:\n\n# /usr/sbin/aide --check\n\nIf this check produces any unexpected output, investigate.", 
+      "long_description": "For AIDE to be effective, an initial database of \"known-good\" information about files must be captured and it should be able to be verified against the installed files. ", 
+      "short_description": "A file integrity baseline must be created."
+    }
+  }
+}

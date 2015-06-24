@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38437", 
+      "C-45991r1_chk", 
+      "F-43381r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify the \"autofs\" service is disabled, run the following command: \n\nchkconfig --list autofs\n\nIf properly configured, the output should be the following: \n\nautofs 0:off 1:off 2:off 3:off 4:off 5:off 6:off\n\nVerify the \"autofs\" service is not running:\n\n# service autofs status\n\nIf the autofs service is enabled or running, this is a finding.", 
+      "fix": "If the \"autofs\" service is not needed to dynamically mount NFS filesystems or removable media, disable the service for all runlevels: \n\n# chkconfig --level 0123456 autofs off\n\nStop the service if it is already running: \n\n# service autofs stop", 
+      "long_description": "All filesystems that are required for the successful operation of the system should be explicitly listed in \"/etc/fstab\" by an administrator. New filesystems should not be arbitrarily introduced via the automounter.\n\nThe \"autofs\" daemon mounts and unmounts filesystems, such as user home directories shared via NFS, on demand. In addition, autofs can be used to handle removable media, and the default configuration provides the cdrom device as \"/misc/cd\". However, this method of providing access to removable media is not common, so autofs can almost always be disabled if NFS is not in use. Even if NFS is required, it is almost always possible to configure filesystem mounts statically by editing \"/etc/fstab\" rather than relying on the automounter. ", 
+      "short_description": "Automated file system mounting tools must not be enabled unless needed."
+    }
+  }
+}

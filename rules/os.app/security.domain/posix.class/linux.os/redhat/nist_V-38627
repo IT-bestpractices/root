@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38627", 
+      "C-46187r1_chk", 
+      "F-43577r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify the \"openldap-servers\" package is not installed, run the following command: \n\n$ rpm -q openldap-servers\n\nThe output should show the following. \n\npackage openldap-servers is not installed\n\n\nIf it does not, this is a finding.", 
+      "fix": "The \"openldap-servers\" package should be removed if not in use. Is this machine the OpenLDAP server? If not, remove the package. \n\n# yum erase openldap-servers\n\nThe openldap-servers RPM is not installed by default on RHEL6 machines. It is needed only by the OpenLDAP server, not by the clients which use LDAP for authentication. If the system is not intended for use as an LDAP Server it should be removed.", 
+      "long_description": "Unnecessary packages should not be installed to decrease the attack surface of the system.", 
+      "short_description": "The openldap-servers package must not be installed unless required."
+    }
+  }
+}

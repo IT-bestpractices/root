@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38540", 
+      "C-46098r1_chk", 
+      "F-43488r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine if the system is configured to audit changes to its network configuration, run the following command: \n\nauditctl -l | egrep '(sethostname|setdomainname|/etc/issue|/etc/issue.net|/etc/hosts|/etc/sysconfig/network)'\n\nIf the system is configured to watch for network configuration changes, a line should be returned for each file specified (and \"perm=wa\" should be indicated for each). \nIf the system is not configured to audit changes of the network configuration, this is a finding.", 
+      "fix": "Add the following to \"/etc/audit/audit.rules\", setting ARCH to either b32 or b64 as appropriate for your system: \n\n# audit_network_modifications\n-a always,exit -F arch=ARCH -S sethostname -S setdomainname -k audit_network_modifications\n-w /etc/issue -p wa -k audit_network_modifications\n-w /etc/issue.net -p wa -k audit_network_modifications\n-w /etc/hosts -p wa -k audit_network_modifications\n-w /etc/sysconfig/network -p wa -k audit_network_modifications", 
+      "long_description": "The network environment should not be modified by anything other than administrator action. Any change to network parameters should be audited.", 
+      "short_description": "The audit system must be configured to audit modifications to the systems network configuration."
+    }
+  }
+}

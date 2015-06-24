@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-51379", 
+      "C-53719r1_chk", 
+      "F-56179r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check for unlabeled device files, run the following command:\n\n# ls -RZ /dev | grep unlabeled_t\n\nIt should produce no output in a well-configured system. \n\nIf there is output, this is a finding.", 
+      "fix": "Device files, which are used for communication with important system resources, should be labeled with proper SELinux types. If any device files carry the SELinux type \"unlabeled_t\", investigate the cause and correct the file's context.", 
+      "long_description": "If a device file carries the SELinux type \"unlabeled_t\", then SELinux cannot properly restrict access to the device file. ", 
+      "short_description": "All device files must be monitored by the system Linux Security Module."
+    }
+  }
+}

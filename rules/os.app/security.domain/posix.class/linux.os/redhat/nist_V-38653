@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38653", 
+      "C-46213r1_chk", 
+      "F-43602r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure the default password is not set, run the following command: \n\n# grep -v \"^#\" /etc/snmp/snmpd.conf| grep public\n\nThere should be no output. \nIf there is output, this is a finding.", 
+      "fix": "Edit \"/etc/snmp/snmpd.conf\", remove default community string \"public\". Upon doing that, restart the SNMP service: \n\n# service snmpd restart", 
+      "long_description": "Presence of the default SNMP password enables querying of different system aspects and could result in unauthorized knowledge of the system.", 
+      "short_description": "The snmpd service must not use a default password."
+    }
+  }
+}

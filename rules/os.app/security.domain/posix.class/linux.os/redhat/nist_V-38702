@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38702", 
+      "C-46264r1_chk", 
+      "F-43651r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Find if logging is applied to the ftp daemon. \n\nProcedures: \n\nIf vsftpd is started by xinetd the following command will indicate the xinetd.d startup file. \n\n# grep vsftpd /etc/xinetd.d/*\n\n\n\n# grep server_args [vsftpd xinetd.d startup file]\n\nThis will indicate the vsftpd config file used when starting through xinetd. If the [server_args]line is missing or does not include the vsftpd configuration file, then the default config file (/etc/vsftpd/vsftpd.conf) is used. \n\n# grep xferlog_enable [vsftpd config file]\n\n\nIf xferlog_enable is missing, or is not set to yes, this is a finding.", 
+      "fix": "Add or correct the following configuration options within the \"vsftpd\" configuration file, located at \"/etc/vsftpd/vsftpd.conf\". \n\nxferlog_enable=YES\nxferlog_std_format=NO\nlog_ftp_protocol=YES", 
+      "long_description": "To trace malicious activity facilitated by the FTP service, it must be configured to ensure that all commands sent to the ftp server are logged using the verbose vsftpd log format. The default vsftpd log file is /var/log/vsftpd.log.", 
+      "short_description": "The FTP daemon must be configured for logging or verbose mode."
+    }
+  }
+}

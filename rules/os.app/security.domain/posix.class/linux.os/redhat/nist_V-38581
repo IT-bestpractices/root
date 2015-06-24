@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38581", 
+      "C-46139r1_chk", 
+      "F-43529r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the group ownership of \"/etc/grub.conf\", run the command: \n\n$ ls -lL /etc/grub.conf\n\nIf properly configured, the output should indicate the following group-owner. \"root\" \nIf it does not, this is a finding.", 
+      "fix": "The file \"/etc/grub.conf\" should be group-owned by the \"root\" group to prevent destruction or modification of the file. To properly set the group owner of \"/etc/grub.conf\", run the command: \n\n# chgrp root /etc/grub.conf", 
+      "long_description": "The \"root\" group is a highly-privileged group. Furthermore, the group-owner of this file should not have any access privileges anyway.", 
+      "short_description": "The system boot loader configuration file(s) must be group-owned by root."
+    }
+  }
+}

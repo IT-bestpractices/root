@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38463", 
+      "C-46018r1_chk", 
+      "F-43408r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine if \"/var/log\" is on its own partition or logical volume: \n\n$ mount | grep \"on /var/log \"\n\nIf \"/var/log\" has its own partition or volume group, a line will be returned. \nIf no line is returned, this is a finding.", 
+      "fix": "System logs are stored in the \"/var/log\" directory. Ensure that it has its own partition or logical volume at installation time, or migrate it using LVM.", 
+      "long_description": "Placing \"/var/log\" in its own partition enables better separation between log files and other files in \"/var/\".", 
+      "short_description": "The system must use a separate file system for /var/log."
+    }
+  }
+}

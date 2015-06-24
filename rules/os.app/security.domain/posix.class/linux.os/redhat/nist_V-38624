@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38624", 
+      "C-46183r1_chk", 
+      "F-43573r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following commands to determine the current status of the \"logrotate\" service: \n\n# grep logrotate /var/log/cron*\n\nIf the logrotate service is not run on a daily basis by cron, this is a finding.", 
+      "fix": "The \"logrotate\" service should be installed or reinstalled if it is not installed and operating properly, by running the following command:\n\n# yum reinstall logrotate", 
+      "long_description": "Log files that are not properly rotated run the risk of growing so large that they fill up the /var/log partition. Valuable logging information could be lost if the /var/log partition becomes full.", 
+      "short_description": "System logs must be rotated daily."
+    }
+  }
+}

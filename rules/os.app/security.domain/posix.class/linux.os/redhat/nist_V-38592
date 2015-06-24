@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38592", 
+      "C-46151r4_chk", 
+      "F-43541r4_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure the failed password attempt policy is configured correctly, run the following command: \n\n# grep pam_faillock /etc/pam.d/system-auth\n# grep pam_faillock /etc/pam.d/password-auth\n\nThe output should show \"unlock_time=<some-large-number>\"; the largest acceptable value is 604800 seconds (one week). \nIf that is not the case, this is a finding.", 
+      "fix": "To configure the system to lock out accounts after a number of incorrect logon attempts and require an administrator to unlock the account using \"pam_faillock.so\": \n\nAdd the following lines immediately below the \"pam_unix.so\" statement in the AUTH section of\n\"/etc/pam.d/system-auth\" and \"/etc/pam.d/password-auth\": \n\nauth [default=die] pam_faillock.so authfail deny=3 unlock_time=604800 fail_interval=900\n\nauth required pam_faillock.so authsucc deny=3 unlock_time=604800  fail_interval=900\n\nNote that any updates made to \"/etc/pam.d/system-auth\" and \"/etc/pam.d/password-auth\" may be overwritten by the \"authconfig\" program.  The \"authconfig\" program should not be used.", 
+      "long_description": "Locking out user accounts after a number of incorrect attempts prevents direct password guessing attacks. Ensuring that an administrator is involved in unlocking locked accounts draws appropriate attention to such situations.", 
+      "short_description": "The system must require administrator action to unlock an account locked by excessive failed login attempts."
+    }
+  }
+}

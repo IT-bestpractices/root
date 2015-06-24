@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38685", 
+      "C-46247r1_chk", 
+      "F-43634r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "For every temporary account, run the following command to obtain its account aging and expiration information: \n\n# chage -l [USER]\n\nVerify each of these accounts has an expiration date set as documented. \nIf any temporary accounts have no expiration date set or do not expire within a documented time frame, this is a finding.", 
+      "fix": "In the event temporary accounts are required, configure the system to terminate them after a documented time period. For every temporary account, run the following command to set an expiration date on it, substituting \"[USER]\" and \"[YYYY-MM-DD]\" appropriately: \n\n# chage -E [YYYY-MM-DD] [USER]\n\n\"[YYYY-MM-DD]\" indicates the documented expiration date for the account.", 
+      "long_description": "When temporary accounts are created, there is a risk they may remain in place and active after the need for them no longer exists. Account expiration greatly reduces the risk of accounts being misused or hijacked.", 
+      "short_description": "Temporary accounts must be provisioned with an expiration date."
+    }
+  }
+}

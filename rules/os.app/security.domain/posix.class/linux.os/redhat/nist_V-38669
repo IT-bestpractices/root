@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38669", 
+      "C-46230r1_chk", 
+      "F-43618r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to determine the current status of the \"postfix\" service:\n\n# service postfix status\n\nIf the service is enabled, it should return the following:\n\npostfix is running...\n\nIf the service is not enabled, this is a finding.", 
+      "fix": "The Postfix mail transfer agent is used for local mail delivery within the system. The default configuration only listens for connections to the default SMTP port (port 25) on the loopback interface (127.0.0.1). It is recommended to leave this service enabled for local mail delivery. The \"postfix\" service can be enabled with the following command: \n\n# chkconfig postfix on\n# service postfix start", 
+      "long_description": "Local mail delivery is essential to some system maintenance and notification tasks.", 
+      "short_description": "The postfix service must be enabled for mail delivery."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38476", 
+      "C-46031r3_chk", 
+      "F-43421r3_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure that the GPG keys are installed, run:\n\n$ rpm -q gpg-pubkey\n\nThe command should return the strings below:\n\ngpg-pubkey-fd431d51-4ae0493b\ngpg-pubkey-2fa658e0-45700c69\n\nIf the Red Hat GPG Keys are not installed, this is a finding.", 
+      "fix": "To ensure the system can cryptographically verify base software packages come from Red Hat (and to connect to the Red Hat Network to receive them), the Red Hat GPG keys must be installed properly. To install the Red Hat GPG keys, run:\n\n# rhn_register\n\nIf the system is not connected to the Internet or an RHN Satellite, then install the Red Hat GPG keys from trusted media such as the Red Hat installation CD-ROM or DVD. Assuming the disc is mounted in \"/media/cdrom\", use the following command as the root user to import them into the keyring:\n\n# rpm --import /media/cdrom/RPM-GPG-KEY", 
+      "long_description": "The Red Hat GPG keys are necessary to cryptographically verify packages are from Red Hat. ", 
+      "short_description": "Vendor-provided cryptographic certificates must be installed to verify the integrity of system software."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38598", 
+      "C-46156r3_chk", 
+      "F-43546r3_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check that the \"rexec\" service is disabled in system boot configuration, run the following command:\n\n# chkconfig \"rexec\" --list\n\nOutput should indicate the \"rexec\" service has either not been installed, or has been disabled, as shown in the example below:\n\n# chkconfig \"rexec\" --list\nrexec off\nOR\nerror reading information on service rexec: No such file or directory\n\n\nIf the service is running, this is a finding.", 
+      "fix": "The \"rexec\" service, which is available with the \"rsh-server\" package and runs as a service through xinetd, should be disabled. The \"rexec\" service can be disabled with the following command: \n\n# chkconfig rexec off", 
+      "long_description": "The rexec service uses unencrypted network communications, which means that data from the login session, including passwords and all other information transmitted during the session, can be stolen by eavesdroppers on the network.", 
+      "short_description": "The rexecd service must not be running."
+    }
+  }
+}

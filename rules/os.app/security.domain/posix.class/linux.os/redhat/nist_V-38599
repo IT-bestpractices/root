@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38599", 
+      "C-46174r1_chk", 
+      "F-43564r3_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify this configuration, run the following command: \n\ngrep \"banner_file\" /etc/vsftpd/vsftpd.conf\n\nThe output should show the value of \"banner_file\" is set to \"/etc/issue\", an example of which is shown below. \n\n# grep \"banner_file\" /etc/vsftpd/vsftpd.conf\nbanner_file=/etc/issue\n\n\nIf it does not, this is a finding.", 
+      "fix": "Edit the vsftpd configuration file, which resides at \"/etc/vsftpd/vsftpd.conf\" by default. Add or correct the following configuration options. \n\nbanner_file=/etc/issue\n\nRestart the vsftpd daemon.\n\n# service vsftpd restart", 
+      "long_description": "This setting will cause the system greeting banner to be used for FTP connections as well.", 
+      "short_description": "The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner."
+    }
+  }
+}

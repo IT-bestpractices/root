@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38577", 
+      "C-46135r1_chk", 
+      "F-43525r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Inspect \"/etc/libuser.conf\" and ensure the following line appears in the \"[default]\" section: \n\ncrypt_style = sha512\n\n\nIf it does not, this is a finding.", 
+      "fix": "In \"/etc/libuser.conf\", add or correct the following line in its \"[defaults]\" section to ensure the system will use the SHA-512 algorithm for password hashing: \n\ncrypt_style = sha512", 
+      "long_description": "Using a stronger hashing algorithm makes password cracking attacks more difficult.", 
+      "short_description": "The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (libuser.conf)."
+    }
+  }
+}

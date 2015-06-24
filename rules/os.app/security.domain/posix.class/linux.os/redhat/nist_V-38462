@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38462", 
+      "C-46017r1_chk", 
+      "F-43407r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Verify RPM signature validation is not disabled:\n# grep nosignature /etc/rpmrc /usr/lib/rpm/rpmrc /usr/lib/rpm/redhat/rpmrc ~root/.rpmrc\nIf any configuration is found, this is a finding.", 
+      "fix": "Edit the RPM configuration files containing the \"nosignature\" option and remove the option.", 
+      "long_description": "Ensuring all packages' cryptographic signatures are valid prior to installation ensures the provenance of the software and protects against malicious tampering.", 
+      "short_description": "The RPM package management tool must cryptographically verify the authenticity of all software packages during installation."
+    }
+  }
+}

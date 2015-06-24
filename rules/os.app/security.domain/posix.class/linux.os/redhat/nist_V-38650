@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38650", 
+      "C-46210r1_chk", 
+      "F-43599r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check that the \"rdisc\" service is disabled in system boot configuration, run the following command: \n\n# chkconfig \"rdisc\" --list\n\nOutput should indicate the \"rdisc\" service has either not been installed, or has been disabled at all runlevels, as shown in the example below: \n\n# chkconfig \"rdisc\" --list\n\"rdisc\" 0:off 1:off 2:off 3:off 4:off 5:off 6:off\n\nRun the following command to verify \"rdisc\" is disabled through current runtime configuration: \n\n# service rdisc status\n\nIf the service is disabled the command will return the following output: \n\nrdisc is stopped\n\n\nIf the service is running, this is a finding.", 
+      "fix": "The \"rdisc\" service implements the client side of the ICMP Internet Router Discovery Protocol (IRDP), which allows discovery of routers on the local subnet. If a router is discovered then the local routing table is updated with a corresponding default route. By default this daemon is disabled. The \"rdisc\" service can be disabled with the following commands: \n\n# chkconfig rdisc off\n# service rdisc stop", 
+      "long_description": "General-purpose systems typically have their network and routing information configured statically by a system administrator. Workstations or some special-purpose systems often use DHCP (instead of IRDP) to retrieve dynamic network configuration information.", 
+      "short_description": "The rdisc service must not be running."
+    }
+  }
+}

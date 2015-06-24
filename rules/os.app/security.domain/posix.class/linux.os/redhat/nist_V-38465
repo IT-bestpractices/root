@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38465", 
+      "C-46019r4_chk", 
+      "F-43409r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default: \n\n/lib\n/lib64\n/usr/lib\n/usr/lib64\n\n\nKernel modules, which can be added to the kernel during runtime, are stored in \"/lib/modules\". All files in these directories should not be group-writable or world-writable. To find shared libraries that are group-writable or world-writable, run the following command for each directory [DIR] which contains shared libraries: \n\n$ find -L [DIR] -perm /022 -type f\n\n\nIf any of these files (excluding broken symlinks) are group-writable or world-writable, this is a finding.", 
+      "fix": "System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default: \n\n/lib\n/lib64\n/usr/lib\n/usr/lib64\n\nIf any file in these directories is found to be group-writable or world-writable, correct its permission with the following command: \n\n# chmod go-w [FILE]", 
+      "long_description": "Files from shared library directories are loaded into the address space of processes (including privileged ones) or of the kernel itself at runtime. Restrictive permissions are necessary to protect the integrity of the system.", 
+      "short_description": "Library files must have mode 0755 or less permissive."
+    }
+  }
+}

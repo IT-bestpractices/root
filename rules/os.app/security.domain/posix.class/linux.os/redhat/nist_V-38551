@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38551", 
+      "C-46109r3_chk", 
+      "F-43499r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the system is a cross-domain system, this is not applicable.\n\nIf IPV6 is disabled, this is not applicable.\n\nRun the following command to determine the current status of the \"ip6tables\" service: \n\n# service ip6tables status\n\nIf the service is not running, it should return the following: \n\nip6tables: Firewall is not running.\n\n\nIf the service is not running, this is a finding.", 
+      "fix": "The \"ip6tables\" service can be enabled with the following commands: \n\n# chkconfig ip6tables on\n# service ip6tables start", 
+      "long_description": "The \"ip6tables\" service provides the system's host-based firewalling capability for IPv6 and ICMPv6.", 
+      "short_description": "The operating system must connect to external networks or information systems only through managed IPv6 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture."
+    }
+  }
+}

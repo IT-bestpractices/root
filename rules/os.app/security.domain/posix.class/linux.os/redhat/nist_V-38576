@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38576", 
+      "C-46134r1_chk", 
+      "F-43524r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Inspect \"/etc/login.defs\" and ensure the following line appears: \n\nENCRYPT_METHOD SHA512\n\n\nIf it does not, this is a finding.", 
+      "fix": "In \"/etc/login.defs\", add or correct the following line to ensure the system will use SHA-512 as the hashing algorithm: \n\nENCRYPT_METHOD SHA512", 
+      "long_description": "Using a stronger hashing algorithm makes password cracking attacks more difficult.", 
+      "short_description": "The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (login.defs)."
+    }
+  }
+}

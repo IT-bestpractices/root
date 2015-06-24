@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38471", 
+      "C-46026r1_chk", 
+      "F-43416r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Verify the audispd plugin is active:\n\n# grep active /etc/audisp/plugins.d/syslog.conf\n\nIf the \"active\" setting is missing or set to \"no\", this is a finding.", 
+      "fix": "Set the \"active\" line in \"/etc/audisp/plugins.d/syslog.conf\" to \"yes\".  Restart the auditd process.\n\n# service auditd restart", 
+      "long_description": "The auditd service does not include the ability to send audit records to a centralized server for management directly.  It does, however, include an audit event multiplexor plugin (audispd) to pass audit records to the local syslog server.", 
+      "short_description": "The system must forward audit records to the syslog service."
+    }
+  }
+}

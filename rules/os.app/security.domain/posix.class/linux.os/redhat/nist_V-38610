@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38610", 
+      "C-46168r1_chk", 
+      "F-43558r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure the SSH idle timeout will occur when the \"ClientAliveCountMax\" is set, run the following command: \n\n# grep ClientAliveCountMax /etc/ssh/sshd_config\n\nIf properly configured, output should be: \n\nClientAliveCountMax 0\n\n\nIf it is not, this is a finding.", 
+      "fix": "To ensure the SSH idle timeout occurs precisely when the \"ClientAliveCountMax\" is set, edit \"/etc/ssh/sshd_config\" as follows: \n\nClientAliveCountMax 0", 
+      "long_description": "This ensures a user login will be terminated as soon as the \"ClientAliveCountMax\" is reached.", 
+      "short_description": "The SSH daemon must set a timeout count on idle sessions."
+    }
+  }
+}

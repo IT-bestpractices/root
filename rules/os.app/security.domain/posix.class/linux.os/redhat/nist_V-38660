@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38660", 
+      "C-46215r1_chk", 
+      "F-43604r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure only SNMPv3 or newer is used, run the following command: \n\n# grep 'v1\\|v2c\\|com2sec' /etc/snmp/snmpd.conf | grep -v '^#'\n\nThere should be no output. \nIf there is output, this is a finding.", 
+      "fix": "Edit \"/etc/snmp/snmpd.conf\", removing any references to \"v1\", \"v2c\", or \"com2sec\". Upon doing that, restart the SNMP service: \n\n# service snmpd restart", 
+      "long_description": "Earlier versions of SNMP are considered insecure, as they potentially allow unauthorized access to detailed system management information.\n", 
+      "short_description": "The snmpd service must use only SNMP protocol version 3 or newer."
+    }
+  }
+}

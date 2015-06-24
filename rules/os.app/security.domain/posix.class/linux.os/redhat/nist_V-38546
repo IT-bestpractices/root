@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38546", 
+      "C-46104r2_chk", 
+      "F-43494r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the system uses IPv6, this is not applicable.\n\nIf the system is configured to disable the \"ipv6\" kernel module, it will contain a line of the form: \n\noptions ipv6 disable=1\n\nSuch lines may be inside any file in \"/etc/modprobe.d\" or the deprecated \"/etc/modprobe.conf\". This permits insertion of the IPv6 kernel module (which other parts of the system expect to be present), but otherwise keeps it inactive. Run the following command to search for such lines in all files in \"/etc/modprobe.d\" and the deprecated \"/etc/modprobe.conf\": \n\n$ grep -r ipv6 /etc/modprobe.conf /etc/modprobe.d\n\n\nIf the IPv6 kernel module is not disabled, this is a finding.", 
+      "fix": "To prevent the IPv6 kernel module (\"ipv6\") from binding to the IPv6 networking stack, add the following line to \"/etc/modprobe.d/disabled.conf\" (or another file in \"/etc/modprobe.d\"): \n\noptions ipv6 disable=1\n\nThis permits the IPv6 module to be loaded (and thus satisfy other modules that depend on it), while disabling support for the IPv6 protocol.", 
+      "long_description": "Any unnecessary network stacks - including IPv6 - should be disabled, to reduce the vulnerability to exploitation.", 
+      "short_description": "The IPv6 protocol handler must not be bound to the network stack unless needed."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38454", 
+      "C-46010r1_chk", 
+      "F-43400r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "The following command will list which files on the system have ownership different from what is expected by the RPM database: \n\n# rpm -Va | grep '^.....U'\n\n\nIf there is output, this is a finding.", 
+      "fix": "The RPM package management system can restore ownership of package files and directories. The following command will update files and directories with ownership different from what is expected by the RPM database: \n\n# rpm -qf [file or directory name]\n# rpm --setugids [package]", 
+      "long_description": "Ownership of system binaries and configuration files that is incorrect could allow an unauthorized user to gain privileges that they should not have. The ownership set by the vendor should be maintained. Any deviations from this baseline should be investigated.", 
+      "short_description": "The system package management tool must verify ownership on all files and directories associated with packages."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38681", 
+      "C-46243r2_chk", 
+      "F-43630r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure all GIDs referenced in /etc/passwd are defined in /etc/group, run the following command: \n\n# pwck -r | grep 'no group'\n\nThere should be no output. \nIf there is output, this is a finding.", 
+      "fix": "Add a group to the system for each GID referenced without a corresponding group.", 
+      "long_description": "Inconsistency in GIDs between /etc/passwd and /etc/group could lead to a user having unintended rights.", 
+      "short_description": "All GIDs referenced in /etc/passwd must be defined in /etc/group"
+    }
+  }
+}

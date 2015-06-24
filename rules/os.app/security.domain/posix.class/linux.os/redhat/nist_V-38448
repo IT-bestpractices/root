@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38448", 
+      "C-46003r1_chk", 
+      "F-43393r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the group ownership of \"/etc/gshadow\", run the command: \n\n$ ls -l /etc/gshadow\n\nIf properly configured, the output should indicate the following group-owner. \"root\" \nIf it does not, this is a finding.", 
+      "fix": "To properly set the group owner of \"/etc/gshadow\", run the command: \n\n# chgrp root /etc/gshadow", 
+      "long_description": "The \"/etc/gshadow\" file contains group password hashes. Protection of this file is critical for system security.", 
+      "short_description": "The /etc/gshadow file must be group-owned by root."
+    }
+  }
+}

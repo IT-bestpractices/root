@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-58901", 
+      "C-59747r1_chk", 
+      "F-64285r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Verify neither the \"NOPASSWD\" option nor the \"!authenticate\" option is configured for use in \"/etc/sudoers\" and associated files. Note that the \"#include\" and \"#includedir\" directives may be used to include configuration data from locations other than the defaults enumerated here.\n\n# egrep '^[^#]*NOPASSWD' /etc/sudoers /etc/sudoers.d/*\n# egrep '^[^#]*!authenticate' /etc/sudoers /etc/sudoers.d/*\n\nIf the \"NOPASSWD\" or \"!authenticate\" options are configured for use in \"/etc/sudoers\" or associated files, this is a finding.", 
+      "fix": "Update the \"/etc/sudoers\" or other sudo configuration files to remove or comment out lines utilizing the \"NOPASSWD\" and \"!authenticate\" options.\n\n# visudo\n# visudo -f [other sudo configuration file]", 
+      "long_description": "The \"sudo\" command allows authorized users to run programs (including shells) as other users, system users, and root. The \"/etc/sudoers\" file is used to configure authorized \"sudo\" users as well as the programs they are allowed to run. Some configuration options in the \"/etc/sudoers\" file allow configured users to run programs without re-authenticating. Use of these configuration options makes it easier for one compromised account to be used to compromise other accounts.", 
+      "short_description": "The sudo command must require authentication."
+    }
+  }
+}

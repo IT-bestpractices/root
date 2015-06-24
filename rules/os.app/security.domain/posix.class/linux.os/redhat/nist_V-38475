@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38475", 
+      "C-46029r1_chk", 
+      "F-43419r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the minimum password length, run the command: \n\n$ grep PASS_MIN_LEN /etc/login.defs\n\nThe DoD requirement is \"14\". \nIf it is not set to the required value, this is a finding.", 
+      "fix": "To specify password length requirements for new accounts, edit the file \"/etc/login.defs\" and add or correct the following lines: \n\nPASS_MIN_LEN 14\n\n\n\nThe DoD requirement is \"14\". If a program consults \"/etc/login.defs\" and also another PAM module (such as \"pam_cracklib\") during a password change operation, then the most restrictive must be satisfied.", 
+      "long_description": "Requiring a minimum password length makes password cracking attacks more difficult by ensuring a larger search space. However, any security benefit from an onerous requirement must be carefully weighed against usability problems, support costs, or counterproductive behavior that may result.\n\nWhile it does not negate the password length requirement, it is preferable to migrate from a password-based authentication scheme to a stronger one based on PKI (public key infrastructure).", 
+      "short_description": "The system must require passwords to contain a minimum of 14 characters."
+    }
+  }
+}

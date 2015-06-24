@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38688", 
+      "C-46250r3_chk", 
+      "F-43637r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the GConf2 package is not installed, this is not applicable.\n\nTo ensure a login warning banner is enabled, run the following: \n\n$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gdm/simple-greeter/banner_message_enable\n\nSearch for the \"banner_message_enable\" schema. If properly configured, the \"default\" value should be \"true\". \nIf it is not, this is a finding.", 
+      "fix": "To enable displaying a login warning banner in the GNOME Display Manager's login screen, run the following command: \n\n# gconftool-2 --direct \\\n--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \\\n--type bool \\\n--set /apps/gdm/simple-greeter/banner_message_enable true\n\nTo display a banner, this setting must be enabled and then banner text must also be set.", 
+      "long_description": "An appropriate warning message reinforces policy awareness during the logon process and facilitates possible legal action against attackers.", 
+      "short_description": "A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts."
+    }
+  }
+}

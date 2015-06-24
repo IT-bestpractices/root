@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38683", 
+      "C-46245r1_chk", 
+      "F-43632r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to check for duplicate account names: \n\n# pwck -rq\n\nIf there are no duplicate names, no line will be returned. \nIf a line is returned, this is a finding.", 
+      "fix": "Change usernames, or delete accounts, so each has a unique name.", 
+      "long_description": "Unique usernames allow for accountability on the system.", 
+      "short_description": "All accounts on the system must have unique user or account names"
+    }
+  }
+}

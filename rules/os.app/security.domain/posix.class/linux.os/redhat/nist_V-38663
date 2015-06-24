@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38663", 
+      "C-46223r1_chk", 
+      "F-43612r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "The following command will list which audit files on the system have permissions different from what is expected by the RPM database: \n\n# rpm -V audit | grep '^.M'\n\nIf there is any output, for each file or directory found, compare the RPM-expected permissions with the permissions on the file or directory:\n\n# rpm -q --queryformat \"[%{FILENAMES} %{FILEMODES:perms}\\n]\" audit | grep  [filename]\n# ls -lL [filename]\n\nIf the existing permissions are more permissive than those expected by RPM, this is a finding.", 
+      "fix": "The RPM package management system can restore file access permissions of the audit package files and directories. The following command will update audit files with permissions different from what is expected by the RPM database: \n\n# rpm --setperms audit", 
+      "long_description": "Permissions on audit binaries and configuration files that are too generous could allow an unauthorized user to gain privileges that they should not have. The permissions set by the vendor should be maintained. Any deviations from this baseline should be investigated.", 
+      "short_description": "The system package management tool must verify permissions on all files and directories associated with the audit package."
+    }
+  }
+}

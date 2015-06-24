@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-51875", 
+      "C-54013r1_chk", 
+      "F-56701r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure that last logon/access notification is configured correctly, run the following command:\n\n# grep pam_lastlog.so /etc/pam.d/system-auth\n\nThe output should show output \"showfailed\". If that is not the case, this is a finding.", 
+      "fix": "To configure the system to notify users of last logon/access using \"pam_lastlog\", add the following line immediately after \"session required pam_limits.so\":\n\nsession required pam_lastlog.so showfailed", 
+      "long_description": "Users need to be aware of activity that occurs regarding their account. Providing users with information regarding the number of unsuccessful attempts that were made to login to their account allows the user to determine if any unauthorized activity has occurred and gives them an opportunity to notify administrators. ", 
+      "short_description": "The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access."
+    }
+  }
+}

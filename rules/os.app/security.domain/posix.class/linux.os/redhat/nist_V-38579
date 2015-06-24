@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38579", 
+      "C-46137r1_chk", 
+      "F-43527r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the ownership of \"/etc/grub.conf\", run the command: \n\n$ ls -lL /etc/grub.conf\n\nIf properly configured, the output should indicate the following owner: \"root\" \nIf it does not, this is a finding.", 
+      "fix": "The file \"/etc/grub.conf\" should be owned by the \"root\" user to prevent destruction or modification of the file. To properly set the owner of \"/etc/grub.conf\", run the command: \n\n# chown root /etc/grub.conf", 
+      "long_description": "Only root should be able to modify important boot parameters.", 
+      "short_description": "The system boot loader configuration file(s) must be owned by root."
+    }
+  }
+}

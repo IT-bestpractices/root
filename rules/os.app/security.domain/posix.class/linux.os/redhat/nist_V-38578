@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38578", 
+      "C-46136r1_chk", 
+      "F-43526r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify that auditing is configured for system administrator actions, run the following command: \n\n# auditctl -l | grep \"watch=/etc/sudoers\"\n\n\nIf there is no output, this is a finding.", 
+      "fix": "At a minimum, the audit system should collect administrator actions for all users and root. Add the following to \"/etc/audit/audit.rules\": \n\n-w /etc/sudoers -p wa -k actions", 
+      "long_description": "The actions taken by system administrators should be audited to keep a record of what was executed on the system, as well as, for accountability purposes.", 
+      "short_description": "The audit system must be configured to audit changes to the /etc/sudoers file."
+    }
+  }
+}

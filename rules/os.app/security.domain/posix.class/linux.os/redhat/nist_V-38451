@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38451", 
+      "C-46006r1_chk", 
+      "F-43396r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the group ownership of \"/etc/passwd\", run the command: \n\n$ ls -l /etc/passwd\n\nIf properly configured, the output should indicate the following group-owner. \"root\" \nIf it does not, this is a finding.", 
+      "fix": "To properly set the group owner of \"/etc/passwd\", run the command: \n\n# chgrp root /etc/passwd", 
+      "long_description": "The \"/etc/passwd\" file contains information about the users that are configured on the system. Protection of this file is critical for system security.", 
+      "short_description": "The /etc/passwd file must be group-owned by root."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38595", 
+      "C-46154r1_chk", 
+      "F-43544r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Interview the SA to determine if all accounts not exempted by policy are using CAC authentication. For DoD systems, the following systems and accounts are exempt from using smart card (CAC) authentication: \n\nSIPRNET systems\nStandalone systems\nApplication accounts\nTemporary employee accounts, such as students or interns, who cannot easily receive a CAC or PIV\nOperational tactical locations that are not collocated with RAPIDS workstations to issue CAC or ALT\nTest systems, such as those with an Interim Approval to Test (IATT) and use a separate VPN, firewall, or security measure preventing access to network and system components from outside the protection boundary documented in the IATT.\n\n\n\nIf non-exempt accounts are not using CAC authentication, this is a finding.", 
+      "fix": "To enable smart card authentication, consult the documentation at:\n\nhttps://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/enabling-smart-card-login.html\n\nFor guidance on enabling SSH to authenticate against a Common Access Card (CAC), consult documentation at:\n\nhttps://access.redhat.com/solutions/82273", 
+      "long_description": "Smart card login provides two-factor authentication stronger than that provided by a username/password combination. Smart cards leverage a PKI (public key infrastructure) in order to provide and verify credentials.", 
+      "short_description": "The system must be configured to require the use of a CAC, PIV compliant hardware token, or Alternate Logon Token (ALT) for authentication."
+    }
+  }
+}

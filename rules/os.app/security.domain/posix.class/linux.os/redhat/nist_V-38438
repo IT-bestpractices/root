@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38438", 
+      "C-45992r2_chk", 
+      "F-43382r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Inspect the kernel boot arguments (which follow the word \"kernel\") in \"/etc/grub.conf\". If they include \"audit=1\", then auditing is enabled at boot time. \n\nIf auditing is not enabled at boot time, this is a finding.", 
+      "fix": "To ensure all processes can be audited, even those which start prior to the audit daemon, add the argument \"audit=1\" to the kernel line in \"/etc/grub.conf\", in the manner below:\n\nkernel /vmlinuz-version ro vga=ext root=/dev/VolGroup00/LogVol00 rhgb quiet audit=1\n\nUEFI systems may prepend \"/boot\" to the \"/vmlinuz-version\" argument.", 
+      "long_description": "Each process on the system carries an \"auditable\" flag which indicates whether its activities can be audited. Although \"auditd\" takes care of enabling this for all processes which launch after it does, adding the kernel argument ensures it is set for every process during boot.", 
+      "short_description": "Auditing must be enabled at boot by setting a kernel parameter."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38513", 
+      "C-46070r1_chk", 
+      "F-43460r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Inspect the file \"/etc/sysconfig/iptables\" to determine the default policy for the INPUT chain. It should be set to DROP. \n\n# grep \":INPUT\" /etc/sysconfig/iptables\n\nIf the default policy for the INPUT chain is not set to DROP, this is a finding.", 
+      "fix": "To set the default policy to DROP (instead of ACCEPT) for the built-in INPUT chain which processes incoming packets, add or correct the following line in \"/etc/sysconfig/iptables\": \n\n:INPUT DROP [0:0]", 
+      "long_description": "In \"iptables\" the default policy is applied only after all the applicable rules in the table are examined for a match. Setting the default policy to \"DROP\" implements proper design for a firewall, i.e., any packets which are not explicitly permitted should not be accepted.", 
+      "short_description": "The systems local IPv4 firewall must implement a deny-all, allow-by-exception policy for inbound packets."
+    }
+  }
+}

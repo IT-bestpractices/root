@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-57569", 
+      "C-58279r1_chk", 
+      "F-62639r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify that binaries cannot be directly executed from the /tmp directory, run the following command:\n\n$ grep '\\s/tmp' /etc/fstab\n\nThe resulting output will show whether the /tmp partition has the \"noexec\" flag set. If the /tmp partition does not have the noexec flag set, this is a finding.", 
+      "fix": "The \"noexec\" mount option can be used to prevent binaries from being executed out of \"/tmp\". Add the \"noexec\" option to the fourth column of \"/etc/fstab\" for the line which controls mounting of \"/tmp\".", 
+      "long_description": "Allowing users to execute binaries from world-writable directories such as \"/tmp\" should never be necessary in normal operation and can expose the system to potential compromise.", 
+      "short_description": "The noexec option must be added to the /tmp partition."
+    }
+  }
+}

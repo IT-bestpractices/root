@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38503", 
+      "C-46060r1_chk", 
+      "F-43450r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the group ownership of \"/etc/shadow\", run the command: \n\n$ ls -l /etc/shadow\n\nIf properly configured, the output should indicate the following group-owner. \"root\" \nIf it does not, this is a finding.", 
+      "fix": "To properly set the group owner of \"/etc/shadow\", run the command: \n\n# chgrp root /etc/shadow", 
+      "long_description": "The \"/etc/shadow\" file stores password hashes. Protection of this file is critical for system security.", 
+      "short_description": "The /etc/shadow file must be group-owned by root."
+    }
+  }
+}

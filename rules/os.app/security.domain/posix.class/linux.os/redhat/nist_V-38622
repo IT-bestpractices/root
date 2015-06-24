@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38622", 
+      "C-46182r2_chk", 
+      "F-43572r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the system is an authorized mail relay host, this is not applicable. \n\nRun the following command to ensure postfix accepts mail messages from only the local system: \n\n$ grep inet_interfaces /etc/postfix/main.cf\n\nIf properly configured, the output should show only \"localhost\". \nIf it does not, this is a finding.", 
+      "fix": "Edit the file \"/etc/postfix/main.cf\" to ensure that only the following \"inet_interfaces\" line appears: \n\ninet_interfaces = localhost", 
+      "long_description": "This ensures \"postfix\" accepts mail messages (such as cron job reports) from the local system only, and not from the network, which protects it from network attack.", 
+      "short_description": "Mail relaying must be restricted."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-51363", 
+      "C-53703r1_chk", 
+      "F-56165r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Check the file \"/etc/selinux/config\" and ensure the following line appears:\n\nSELINUX=enforcing\n\nIf SELINUX is not set to enforcing, this is a finding.", 
+      "fix": "The SELinux state should be set to \"enforcing\" at system boot time. In the file \"/etc/selinux/config\", add or correct the following line to configure the system to boot into enforcing mode:\n\nSELINUX=enforcing", 
+      "long_description": "Setting the SELinux state to enforcing ensures SELinux is able to confine potentially compromised processes to the security policy, which is designed to prevent them from causing damage to the system or further elevating their privileges. ", 
+      "short_description": "The system must use a Linux Security Module configured to enforce limits on system services."
+    }
+  }
+}

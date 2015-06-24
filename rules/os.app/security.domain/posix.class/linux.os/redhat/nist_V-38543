@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38543", 
+      "C-46101r2_chk", 
+      "F-43491r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To determine if the system is configured to audit calls to the \"chmod\" system call, run the following command:\n\n$ sudo grep -w \"chmod\" /etc/audit/audit.rules\n\nIf the system is configured to audit this activity, it will return several lines. \n\nIf the system is not configured to audit permission changes, this is a finding.", 
+      "fix": "At a minimum, the audit system should collect file permission changes for all users and root. Add the following to \"/etc/audit/audit.rules\": \n\n-a always,exit -F arch=b32 -S chmod -F auid>=500 -F auid!=4294967295 \\\n-k perm_mod\n-a always,exit -F arch=b32 -S chmod -F auid=0 -k perm_mod\n\nIf the system is 64-bit, then also add the following: \n\n-a always,exit -F arch=b64 -S chmod -F auid>=500 -F auid!=4294967295 \\\n-k perm_mod\n-a always,exit -F arch=b64 -S chmod -F auid=0 -k perm_mod", 
+      "long_description": "The changing of file permissions could indicate that a user is attempting to gain access to information that would otherwise be disallowed. Auditing DAC modifications can facilitate the identification of patterns of abuse among both authorized and unauthorized users.", 
+      "short_description": "The audit system must be configured to audit all discretionary access control permission modifications using chmod."
+    }
+  }
+}

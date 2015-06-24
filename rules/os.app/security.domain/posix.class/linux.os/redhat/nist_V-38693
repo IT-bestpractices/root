@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38693", 
+      "C-46255r1_chk", 
+      "F-43642r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the maximum value for consecutive repeating characters, run the following command: \n\n$ grep pam_cracklib /etc/pam.d/system-auth\n\nLook for the value of the \"maxrepeat\" parameter. The DoD requirement is 3. \nIf maxrepeat is not found or not set to the required value, this is a finding.", 
+      "fix": "The pam_cracklib module's \"maxrepeat\" parameter controls requirements for consecutive repeating characters. When set to a positive number, it will reject passwords which contain more than that number of consecutive characters. Add \"maxrepeat=3\" after pam_cracklib.so to prevent a run of (3 + 1) or more identical characters. \n\npassword required pam_cracklib.so maxrepeat=3", 
+      "long_description": "Passwords with excessive repeating characters may be more vulnerable to password-guessing attacks.", 
+      "short_description": "The system must require passwords to contain no more than three consecutive repeating characters."
+    }
+  }
+}

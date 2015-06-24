@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38674", 
+      "C-46234r1_chk", 
+      "F-43623r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To verify the default runlevel is 3, run the following command: \n\n# grep initdefault /etc/inittab\n\nThe output should show the following: \n\nid:3:initdefault:\n\n\nIf it does not, this is a finding.", 
+      "fix": "Setting the system's runlevel to 3 will prevent automatic startup of the X server. To do so, ensure the following line in \"/etc/inittab\" features a \"3\" as shown: \n\nid:3:initdefault:", 
+      "long_description": "Unnecessary services should be disabled to decrease the attack surface of the system.", 
+      "short_description": "X Windows must not be enabled unless required."
+    }
+  }
+}

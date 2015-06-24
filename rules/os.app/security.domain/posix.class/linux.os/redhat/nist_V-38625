@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38625", 
+      "C-46184r1_chk", 
+      "F-43574r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the system does not use LDAP for authentication or account information, this is not applicable.\n\nTo ensure LDAP is configured to use TLS for all transactions, run the following command: \n\n$ grep start_tls /etc/pam_ldap.conf\n\n\nIf no lines are returned, this is a finding.", 
+      "fix": "Configure LDAP to enforce TLS use. First, edit the file \"/etc/pam_ldap.conf\", and add or correct the following lines: \n\nssl start_tls\n\nThen review the LDAP server and ensure TLS has been configured.", 
+      "long_description": "The ssl directive specifies whether to use ssl or not. If not specified it will default to \"no\". It should be set to \"start_tls\" rather than doing LDAP over SSL.", 
+      "short_description": "If the system is using LDAP for authentication or account information, the system must use a TLS connection using FIPS 140-2 approved cryptographic algorithms."
+    }
+  }
+}

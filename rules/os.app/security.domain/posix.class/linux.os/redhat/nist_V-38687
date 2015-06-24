@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38687", 
+      "C-46249r2_chk", 
+      "F-43636r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the system does not communicate over untrusted networks, this is not applicable.\n\nRun the following command to determine if the \"openswan\" package is installed: \n\n# rpm -q openswan\n\n\nIf the package is not installed, this is a finding.", 
+      "fix": "The Openswan package provides an implementation of IPsec and IKE, which permits the creation of secure tunnels over untrusted networks. The \"openswan\" package can be installed with the following command: \n\n# yum install openswan", 
+      "long_description": "Providing the ability for remote users or systems to initiate a secure VPN connection protects information when it is transmitted over a wide area network.", 
+      "short_description": "The system must provide VPN connectivity for communications over untrusted networks."
+    }
+  }
+}

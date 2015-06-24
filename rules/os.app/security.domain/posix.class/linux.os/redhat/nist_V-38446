@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38446", 
+      "C-46001r1_chk", 
+      "F-43391r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Find the list of alias maps used by the Postfix mail server:\n\n# postconf alias_maps\n\nQuery the Postfix alias maps for an alias for \"root\":\n\n# postmap -q root <alias_map>\n\nIf there are no aliases configured for root that forward to a monitored email address, this is a finding.", 
+      "fix": "Set up an alias for root that forwards to a monitored email address:\n\n# echo \"root: <system.administrator>@mail.mil\" >> /etc/aliases\n# newaliases", 
+      "long_description": "A number of system services utilize email messages sent to the root user to notify system administrators of active or impending issues.  These messages must be forwarded to at least one monitored email address.", 
+      "short_description": "The mail system must forward all mail for root to one or more system administrators."
+    }
+  }
+}

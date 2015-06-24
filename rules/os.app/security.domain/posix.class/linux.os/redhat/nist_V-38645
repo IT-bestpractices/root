@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38645", 
+      "C-46205r1_chk", 
+      "F-43594r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Verify the \"umask\" setting is configured correctly in the \"/etc/login.defs\" file by running the following command: \n\n# grep -i \"umask\" /etc/login.defs\n\nAll output must show the value of \"umask\" set to 077, as shown in the below: \n\n# grep -i \"umask\" /etc/login.defs\nUMASK 077\n\n\nIf the above command returns no output, or if the umask is configured incorrectly, this is a finding.", 
+      "fix": "To ensure the default umask controlled by \"/etc/login.defs\" is set properly, add or correct the \"umask\" setting in \"/etc/login.defs\" to read as follows: \n\nUMASK 077", 
+      "long_description": "The umask value influences the permissions assigned to files when they are created. A misconfigured umask value could result in files with excessive permissions that can be read and/or written to by unauthorized users.", 
+      "short_description": "The system default umask in /etc/login.defs must be 077."
+    }
+  }
+}

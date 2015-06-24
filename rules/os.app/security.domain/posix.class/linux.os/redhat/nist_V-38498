@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38498", 
+      "C-46055r1_chk", 
+      "F-43445r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Run the following command to check the mode of the system audit logs: \n\ngrep \"^log_file\" /etc/audit/auditd.conf|sed s/^[^\\/]*//|xargs stat -c %a:%n\n\nAudit logs must be mode 0640 or less permissive. \nIf any are more permissive, this is a finding.", 
+      "fix": "Change the mode of the audit log files with the following command: \n\n# chmod 0640 [audit_file]", 
+      "long_description": "If users can write to audit logs, audit trails can be modified or destroyed.", 
+      "short_description": "Audit log files must have mode 0640 or less permissive."
+    }
+  }
+}

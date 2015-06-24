@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38676", 
+      "C-46236r1_chk", 
+      "F-43625r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To ensure the X Windows package group is removed, run the following command: \n\n$ rpm -qi xorg-x11-server-common\n\nThe output should be: \n\npackage xorg-x11-server-common is not installed\n\n\nIf it is not, this is a finding.", 
+      "fix": "Removing all packages which constitute the X Window System ensures users or malicious software cannot start X. To do so, run the following command: \n\n# yum groupremove \"X Window System\"", 
+      "long_description": "Unnecessary packages should not be installed to decrease the attack surface of the system.", 
+      "short_description": "The xorg-x11-server-common (X Windows) package must not be installed, unless required."
+    }
+  }
+}

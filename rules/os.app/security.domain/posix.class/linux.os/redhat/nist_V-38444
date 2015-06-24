@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38444", 
+      "C-45999r2_chk", 
+      "F-43389r3_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If IPv6 is disabled, this is not applicable.\n\nInspect the file \"/etc/sysconfig/ip6tables\" to determine the default policy for the INPUT chain. It should be set to DROP:\n\n# grep \":INPUT\" /etc/sysconfig/ip6tables\n\nIf the default policy for the INPUT chain is not set to DROP, this is a finding.", 
+      "fix": "To set the default policy to DROP (instead of ACCEPT) for the built-in INPUT chain which processes incoming packets, add or correct the following line in \"/etc/sysconfig/ip6tables\": \n\n:INPUT DROP [0:0]\n\nRestart the IPv6 firewall:\n\n# service ip6tables restart", 
+      "long_description": "In \"ip6tables\" the default policy is applied only after all the applicable rules in the table are examined for a match. Setting the default policy to \"DROP\" implements proper design for a firewall, i.e., any packets which are not explicitly permitted should not be accepted.", 
+      "short_description": "The systems local IPv6 firewall must implement a deny-all, allow-by-exception policy for inbound packets."
+    }
+  }
+}

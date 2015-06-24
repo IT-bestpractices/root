@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38583", 
+      "C-46141r2_chk", 
+      "F-43531r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the permissions of /etc/grub.conf, run the command:\n\n$ sudo ls -lL /etc/grub.conf\n\nIf properly configured, the output should indicate the following permissions: \"-rw-------\"\nIf it does not, this is a finding.", 
+      "fix": "File permissions for \"/boot/grub/grub.conf\" should be set to 600, which is the default. To properly set the permissions of \"/boot/grub/grub.conf\", run the command:\n\n# chmod 600 /boot/grub/grub.conf\n\nBoot partitions based on VFAT, NTFS, or other non-standard configurations may require alternative measures.", 
+      "long_description": "Proper permissions ensure that only the root user can modify important boot parameters.", 
+      "short_description": "The system boot loader configuration file(s) must have mode 0600 or less permissive."
+    }
+  }
+}

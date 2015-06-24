@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38477", 
+      "C-46032r1_chk", 
+      "F-43422r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the minimum password age, run the command: \n\n$ grep PASS_MIN_DAYS /etc/login.defs\n\nThe DoD requirement is 1. \nIf it is not set to the required value, this is a finding.", 
+      "fix": "To specify password minimum age for new accounts, edit the file \"/etc/login.defs\" and add or correct the following line, replacing [DAYS] appropriately: \n\nPASS_MIN_DAYS [DAYS]\n\nA value of 1 day is considered sufficient for many environments. The DoD requirement is 1.", 
+      "long_description": "Setting the minimum password age protects against users cycling back to a favorite password after satisfying the password reuse requirement.", 
+      "short_description": "Users must not be able to change passwords more than once every 24 hours."
+    }
+  }
+}

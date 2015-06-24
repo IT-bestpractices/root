@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38623", 
+      "C-46181r2_chk", 
+      "F-43571r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "The file permissions for all log files written by rsyslog should be set to 600, or more restrictive. These log files are determined by the second part of each Rule line in \"/etc/rsyslog.conf\" and typically all appear in \"/var/log\". For each log file [LOGFILE] referenced in \"/etc/rsyslog.conf\", run the following command to inspect the file's permissions: \n\n$ ls -l [LOGFILE]\n\nThe permissions should be 600, or more restrictive. Some log files referenced in /etc/rsyslog.conf may be created by other programs and may require exclusion from consideration.\n\nIf the permissions are not correct, this is a finding.", 
+      "fix": "The file permissions for all log files written by rsyslog should be set to 600, or more restrictive. These log files are determined by the second part of each Rule line in \"/etc/rsyslog.conf\" and typically all appear in \"/var/log\". For each log file [LOGFILE] referenced in \"/etc/rsyslog.conf\", run the following command to inspect the file's permissions:\n\n$ ls -l [LOGFILE]\n\nIf the permissions are not 600 or more restrictive, run the following command to correct this:\n\n# chmod 0600 [LOGFILE]", 
+      "long_description": "Log files can contain valuable information regarding system configuration. If the system log files are not protected, unauthorized users could change the logged data, eliminating their forensic value.", 
+      "short_description": "All rsyslog-generated log files must have mode 0600 or less permissive."
+    }
+  }
+}

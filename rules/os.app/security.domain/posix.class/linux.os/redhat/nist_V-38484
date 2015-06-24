@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38484", 
+      "C-46041r2_chk", 
+      "F-43431r2_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "Verify the value associated with the \"PrintLastLog\" keyword in /etc/ssh/sshd_config:\n\n# grep -i \"^PrintLastLog\" /etc/ssh/sshd_config\n\nIf the \"PrintLastLog\" keyword is not present, this is not a finding.  If the value is not set to \"yes\", this is a finding.", 
+      "fix": "Update the \"PrintLastLog\" keyword to \"yes\" in /etc/ssh/sshd_config:\n\nPrintLastLog yes\n\nWhile it is acceptable to remove the keyword entirely since the default action for the SSH daemon is to print the last logon date and time, it is preferred to have the value explicitly documented.", 
+      "long_description": "Users need to be aware of activity that occurs regarding their account. Providing users with information regarding the date and time of their last successful login allows the user to determine if any unauthorized activity has occurred and gives them an opportunity to notify administrators.\n\nAt ssh login, a user must be presented with the last successful login date and time.", 
+      "short_description": "The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh."
+    }
+  }
+}

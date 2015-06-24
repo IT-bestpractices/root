@@ -1,0 +1,18 @@
+{
+  "severity": "high", 
+  "tags": {
+    "nist": [
+      "V-38589", 
+      "C-46147r3_chk", 
+      "F-43537r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check that the \"telnet\" service is disabled in system boot configuration, run the following command: \n\n# chkconfig \"telnet\" --list\n\nOutput should indicate the \"telnet\" service has either not been installed, or has been disabled, as shown in the example below:\n\n# chkconfig \"telnet\" --list\ntelnet         off\nOR\nerror reading information on service telnet: No such file or directory\n\n\nIf the service is running, this is a finding.", 
+      "fix": "The \"telnet\" service can be disabled with the following command: \n\n# chkconfig telnet off", 
+      "long_description": "The telnet protocol uses unencrypted network communication, which means that data from the login session, including passwords and all other information transmitted during the session, can be stolen by eavesdroppers on the network. The telnet protocol is also subject to man-in-the-middle attacks.\n\nMitigation:  If an enabled telnet daemon is configured to only allow encrypted sessions, such as with Kerberos or the use of encrypted network tunnels, the risk of exposing sensitive information is mitigated.", 
+      "short_description": "The telnet daemon must not be running."
+    }
+  }
+}

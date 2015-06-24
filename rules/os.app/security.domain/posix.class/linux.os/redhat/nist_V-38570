@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38570", 
+      "C-46128r1_chk", 
+      "F-43518r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check how many special characters are required in a password, run the following command: \n\n$ grep pam_cracklib /etc/pam.d/system-auth\n\nThe \"ocredit\" parameter (as a negative number) will indicate how many special characters are required. The DoD requires at least one special character in a password. This would appear as \"ocredit=-1\". \nIf ocredit is not found or not set to the required value, this is a finding.", 
+      "fix": "The pam_cracklib module's \"ocredit=\" parameter controls requirements for usage of special (or ``other'') characters in a password. When set to a negative number, any password will be required to contain that many special characters. When set to a positive number, pam_cracklib will grant +1 additional length credit for each special character. Add \"ocredit=-1\" after pam_cracklib.so to require use of a special character in passwords.", 
+      "long_description": "Requiring a minimum number of special characters makes password guessing attacks more difficult by ensuring a larger search space.", 
+      "short_description": "The system must require passwords to contain at least one special character."
+    }
+  }
+}

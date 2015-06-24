@@ -1,0 +1,18 @@
+{
+  "severity": "low", 
+  "tags": {
+    "nist": [
+      "V-38474", 
+      "C-46030r2_chk", 
+      "F-43420r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "If the GConf2 package is not installed, this is not applicable.\n\nVerify the keybindings for the Gnome screensaver:\n\n# gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome_settings_daemon/keybindings/screensaver\n\nIf no output is visible, this is a finding.", 
+      "fix": "Run the following command to set the Gnome desktop keybinding for locking the screen:\n\n# gconftool-2\n--direct \\\n--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \\\n--type string \\\n--set /apps/gnome_settings_daemon/keybindings/screensaver \"<Control><Alt>l\"\n\nAnother keyboard sequence may be substituted for \"<Control><Alt>l\", which is the default for the Gnome desktop.", 
+      "long_description": "The ability to lock graphical desktop sessions manually allows users to easily secure their accounts should they need to depart from their workstations temporarily.", 
+      "short_description": "The system must allow locking of graphical desktop sessions."
+    }
+  }
+}

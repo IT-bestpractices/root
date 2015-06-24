@@ -1,0 +1,18 @@
+{
+  "severity": "medium", 
+  "tags": {
+    "nist": [
+      "V-38450", 
+      "C-46005r1_chk", 
+      "F-43395r1_fix"
+    ]
+  }, 
+  "text": {
+    "en": {
+      "check": "To check the ownership of \"/etc/passwd\", run the command: \n\n$ ls -l /etc/passwd\n\nIf properly configured, the output should indicate the following owner: \"root\" \nIf it does not, this is a finding.", 
+      "fix": "To properly set the owner of \"/etc/passwd\", run the command: \n\n# chown root /etc/passwd", 
+      "long_description": "The \"/etc/passwd\" file contains information about the users that are configured on the system. Protection of this file is critical for system security.", 
+      "short_description": "The /etc/passwd file must be owned by root."
+    }
+  }
+}
