@@ -1,0 +1,14 @@
+{
+  "severity": "medium",
+  "tags": {
+	"itbp": ["itbp-00001"]
+  },
+  "text": {
+    "en": {
+      "check": "To check that the correct queue discipline is enabled to avoid buffer bloat, execute the following command:\n<tt># cat /proc/sys/net/core/default_qdisc</tt>\nThe preferred result is 'fq_codel'. CoDel is also an acceptable result. All other values result in buffer bloat",
+      "fix": "To permanently fix this issue, add the following line to /etc/sysctl.conf. This will take effect when the machine reboots.\n<tt>net.core.default_qdisc fq_codel</tt>\nAn immediate temporary fix can be accomplished by executing this command:\n<tt>echo fq_codel > /proc/sys/net/core/default_qdisc</tt>",
+      "long_description": "The default network queuing discipline should avoid buffer bloat - which destroys latency.  <i>net.core.default_qdisc</i> sets the default queuing mechanism for Linux networking. It has very significant effects on network performance and latency. <i>fq_codel</i> is the current best queuing discipline for performance and latency on Linux machines. It is the current best practice for controlling buffer bloat. As of October 2014, the second best discipline is <i>CoDel</i>.  For details from an entertaining 2014 presentation clearly explaining buffer bloat at the Linux Plumbers Conference by <a href=\"https://www.linkedin.com/in/networkplumber\">Stephen Hemminger</a>[<a href=\"http://www.linux.com/news/special-feature/linux-developers/661550-30-linux-kernel-developers-in-30-weeks-stephen-hemminger\">1</a>], see <a href=\"http://lwn.net/Articles/616241/\">http://lwn.net/Articles/616241/</a>",
+      "short_description": "The default network queuing discipline should avoid buffer bloat."
+    }
+  }
+}
