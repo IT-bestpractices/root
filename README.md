@@ -50,9 +50,7 @@ The NIST National Vulnerability Database lists 9 Tier IV checklists
 72 Tier III checklists
 <https://web.nvd.nist.gov/view/ncp/repository?tier=3&startIndex=0>.
 
-The proposal for this project and an explanation of the directory structure can be found
-<a href="https://docs.google.com/document/d/1EdlNR8W7lUqZQPkBoIGSH-t0BevlqOY6rDUzJ57Qfw8/edit?usp=sharing">
-on Google Docs</a>.
+The proposal for this project and an explanation of the directory structure can be found [Here](Proposal.md)
 
 This project will be first presented publicly at the OSCON 2015 conference. More information can be found
 <a href="http://assimilationsystems.com/events/oscon-2015/">here</a>.
