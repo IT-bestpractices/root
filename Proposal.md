@@ -17,13 +17,14 @@ The project directory structure is designed to ease management of the body of re
 Directory Structure
 In general, the recommendation data structure is proposed to look something like this:
 
-   * <top-level-directory>
-   * <application-name>.app
-   * <recommendation-domain>.domain
-   * <os-class>.class (for example posix.class or windows.class)
-   * <os-type>.os
-   * <distribution (if applicable>.distro
-   * <optional-major-release-version-level>.rel
+   * ``<top-level-directory>``
+     *  ``<application-name>``.app
+       * ``<recommendation-domain>``.domain
+         * ``<os-class>``.class (for example posix.class or windows.class)
+           * ``<os-type>``.os
+            * ``<distribution (if applicable>``.distro
+              * ``<optional-major-release-version-level>``.rel
+
 Recommendations potentially exist at any level in the tree below the <recommendation-domain> level.  The web server would take the supplied set of attributes - and return the information which is the closest and most complete match to the request.
 
 
