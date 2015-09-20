@@ -30,8 +30,8 @@ The path to the IT Best Practices rules can be set in the itbp.cfg file which
 is signalled to the program by setting the ITBP_SETTINGS environment variable.
 
 # APIs Implemented
-show displays the pretty printed HTML output.
-showjson returns the file contents which are assumed to be JSON.
+*show displays the pretty printed HTML output.
+*showjson returns the file contents which are assumed to be JSON.
 
 # User stories implemented in this prototype
 * I am a system administrator and I want to view the Best Practice in a readable format. I was given the URL by a tool.
