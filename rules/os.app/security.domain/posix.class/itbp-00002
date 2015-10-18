@@ -1,0 +1,14 @@
+{
+  "severity": "medium",
+  "tags": {
+	"itbp": ["itbp-00002"]
+  },
+  "text": {
+    "en": {
+      "check": "To check that password authentication is disabled via openssh execute the following command\n<tt># grep PasswordAuthentication /etc/ssh/sshd_config</tt>\nThe result should be an uncommented <tt>no</tt>. If there is no result the result is commented out or the value is yes, then this is a finding.",
+      "fix": "To fix this issue, add the following line to /etc/ssh/sshd_config\n<tt>PasswordAuthentication no</tt>",
+      "long_description": "By default, the secure shell service allows users to log into systems using passwords tunnelled through secure communications. This makes the services vulnerable to brute force attacks for users with weak passwords or passwords were shared across sites. Although this is a disabling password authentication is a good practice in general, it is critical for any systems which face the public internet.",
+      "short_description": "The openssh service should not allow logging in using passwords."
+    }
+  }
+}
