@@ -1,0 +1,11 @@
+Syntax: regex
+*.cmake
+*/CMakeFiles
+*/CMakeFiles/*
+*.pyc
+*.swo
+*.swp
+CMakeCache.txt
+CMakeFiles/*
+install_manifest.txt
+Makefile
