@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <title>IT Best Practices</title>
-    </head>
-
-    <body>
-        <h1>IT Best Practices Tip: {{tipname}}</h1>
-        <h2>Severity</h2>
-        {{severity}}
-        <h2>Short Description</h2>
-        {{shorttiptext}}
-        <h2>Long Description</h2>
-        {{longtiptext}}
-        <h2>How to Check Correct Configuration</h2>
-        {{checktiptext}}
-        <h2>How to Fix</h2>
-        {{fixtiptext}}
-    </body>
+<head>
+<title>IT Best Practices</title>
+</head>
+<body>
+<h1>IT Best Practices Tip: {{tipname}}</h1>
+<h2>Severity: {{severity}}</h2>
+<h2>Short Description</h2>
+{{shorttiptext}}
+<h2>Long Description</h2>
+{{longtiptext|safe}}
+<h2>How to Check Correct Configuration</h2>
+{{checktiptext|safe}}
+<h2>How to Fix</h2>
+{{fixtiptext|safe}}
+</body>
 </html>
 

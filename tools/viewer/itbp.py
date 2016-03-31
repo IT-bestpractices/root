@@ -1,15 +1,13 @@
 #!/usr/bin/python
-# vim: smartindent tabstop=4 shiftwidth=4 expandtab number
+# vim: smartindent tabstop=4 shiftwidth=4 expandtab number colorcolumn=100
 #
 # This file is part of the IT Best Practices project and was derived
 # from a file which is part of the Assimilation Project.
 #
 # Author: Emily Ratliff <eratliff@linuxfoundation.org>
 # Author: Alan Robertson <alanr@unix.sh>
-# Copyright (C) 2015 - Assimilation Systems Limited
+# Copyright (C) 2015 - Emily Ratliff
 #
-# Free support is available from the Assimilation Project community - http://assimproj.org
-# Paid support is available from Assimilation Systems Limited - http://assimilationsystems.com
 #
 # The Assimilation software is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +28,7 @@ Prototype code for providing a REST interface for the IT Best Practices project.
 '''
 import sys
 import os, os.path
+import re
 sys.path.append('..')
 from flask import Flask, request, render_template, json, Response, abort
 from werkzeug.utils import secure_filename
@@ -38,6 +37,7 @@ from werkzeug.utils import secure_filename
 DEBUG = False
 TESTING = False
 ITBP_PATH = '/usr/share/itbp/v1.0/root/rules'
+HOST = '127.0.0.1:5000'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -93,6 +93,23 @@ def showjson():
     resp = Response(response=dat, status=200, mimetype='application/json')
     return resp
 
+ttpat=re.compile('^<br>(#.*)$', re.MULTILINE)
+def html_transform(dobj):
+    '''Transform the dict-like object into a more html-friendly form'''
+    for key in dobj:
+        if key in ('tags'):
+            continue
+        val = dobj[key]
+        if isinstance(val, (str, unicode)):
+           if key in ('check', 'fix', 'long_description'):
+                val = val.replace('\n', '\n<br>')
+                val = ttpat.sub(r'<br><tt>\1</tt>', val)
+                dobj[key] = val
+        else:
+            html_transform(dobj[key])
+        
+    
+
 @app.route('/itbp/v1.0/show', methods=['GET'])
 def show():
     '''Prototype code for showing a human readable HTML rendention
@@ -107,6 +124,7 @@ def show():
     dat = tipfile.read()
     tipfile.close()
     new_obj = json.loads(dat)
+    html_transform(new_obj)
     sev = new_obj['severity']
     tiptext = new_obj['text']
     entiptext = tiptext['en']
@@ -121,4 +139,4 @@ def show():
 
 if __name__ == '__main__':
 
-    app.run()
+    app.run(host='0.0.0.0')
