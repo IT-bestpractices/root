@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# vim: smartindent tabstop=4 shiftwidth=4 expandtab number colorcolumn=100
+# vim: smartindent tabstop=4 shiftwidth=4 expandtab number colorcolumn=80
 #
 # This file is part of the IT Best Practices project and was derived
 # from a file which is part of the Assimilation Project.
@@ -9,8 +9,8 @@
 # Copyright (C) 2015 - Emily Ratliff
 #
 #
-# The Assimilation software is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
+# The Assimilation software is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
@@ -20,7 +20,8 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with the Assimilation Project software.  If not, see http://www.gnu.org/licenses/
+# along with the Assimilation Project software.
+# If not, see http://www.gnu.org/licenses/
 #
 #
 '''
@@ -37,11 +38,89 @@ from werkzeug.utils import secure_filename
 DEBUG = False
 TESTING = False
 ITBP_PATH = '/usr/share/itbp/v1.0/root/rules'
+ITBP_PATH = '../../../root/rules'
 HOST = '127.0.0.1:5000'
+
+class RuleSetDb(object):
+    '''
+    This class represents a set of rules and a lookup function for selecting
+    a rule file based on how well the particular rule matches the given
+    selection criteria.
+
+    We're OK with conflicts as long as it's the best match.
+
+    Might not be the best choice right now, but since at the moment there are
+    no conflicts, it's probably just fine too ;-).
+    '''
+    def __init__(self, rootdir):
+        '''Create an in-memory database of all the rule names and paths
+        The memory for each directory name only occurs once with a potentially
+        large reference count for all the rules that occur in a single
+        directory. This is probably as good as its going to get and probably
+        in practice no more memory than a database needs for its cache
+        memory - at least as long as we have not more than tens of thousands
+        of rules in the worst case.
+        '''
+        self.rulesets = {}
+        rootchoplen = len(rootdir)+1
+        for tuple in os.walk(rootdir, followlinks=True):
+            dirpath, _dirnames, rulenames = tuple
+            relpath = dirpath[rootchoplen:]
+            for rule in rulenames:
+                if rule not in self.rulesets:
+                    self.rulesets[rule] = []
+                self.rulesets[rule].append(relpath)
+
+    @staticmethod
+    def _dir_attrs(dirname):
+        'Transform a directory name into attribute name/value pairs'
+        attrs = {}
+        dirs = dirname.split('/')
+        for dirname in dirs:
+            (prefix, suffix) = os.path.splitext(dirname)
+            if suffix != '':
+                attrs[suffix] = prefix
+            # The last two components may be osname (like redhat) and release
+            elif 'osname' not in attrs:
+                attrs['osname'] = prefix
+            elif 'release' not in attrs:
+                attrs['release'] = prefix
+        return attrs
+
+    @staticmethod
+    def _match_score(dirname, attrs):
+        'Return a score of how many attributes match'
+        dirattrs = RuleSetDb._dir_attrs(dirname)
+        score = 0
+        for attr in attrs:
+            if attr in dirattrs and dirattrs[attr] == attrs[attr]:
+                score += 1
+        return score
+
+    def select_rule(self, attributes):
+        'Figure out which rule best-matches the requested rule attributes'
+        if 'tipname' not in attributes:
+            return None
+        tipname = attributes['tipname']
+        if tipname not in self.rulesets:
+            return None
+        tiplist = self.rulesets[tipname]
+        resultlist = {}
+        best_score = -1
+        best_name = None
+        for dirname in tiplist:
+            score = self._match_score(dirname, attributes)
+            if score > best_score:
+                best_name = dirname
+                best_score = score
+        return os.path.join(best_name, tipname)
+
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('ITBP_SETTINGS', silent=True)
+ruledb = RuleSetDb(app.config['ITBP_PATH'])
+ruledb = RuleSetDb('../../../root/rules')
 
 def validate_params(queryparms):
     '''Parse the input query to find the path
@@ -50,7 +129,8 @@ def validate_params(queryparms):
     tipname can have capitals
     I trust ITBP_PATH since it is set by the person running the server'''
     app_path = secure_filename(queryparms.get('app', '').lower()) + '.app'
-    domain_path = secure_filename(queryparms.get('domain', '').lower()) + '.domain'
+    domain_path = secure_filename(queryparms.get('domain', '').lower()) \
+            + '.domain'
     class_path = secure_filename(queryparms.get('class', '').lower()) + '.class'
     os_path = secure_filename(queryparms.get('os', '').lower()) + '.os'
     osname_path = secure_filename(queryparms.get('osname', '').lower())
@@ -63,6 +143,7 @@ def validate_params(queryparms):
         response_path = os.path.join(response_path, release_path)
     temp_path = os.path.join(response_path, tipname_path)
     response_path = os.path.normpath(temp_path)
+    response_path = ruledb.select_rule(queryparms)
     response_path = os.path.join(app.config['ITBP_PATH'], response_path)
 
     return response_path
@@ -107,8 +188,7 @@ def html_transform(dobj):
                 dobj[key] = val
         else:
             html_transform(dobj[key])
-        
-    
+
 
 @app.route('/itbp/v1.0/show', methods=['GET'])
 def show():
