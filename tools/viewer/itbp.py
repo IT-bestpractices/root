@@ -37,8 +37,8 @@ from werkzeug.utils import secure_filename
 #configuration
 DEBUG = False
 TESTING = False
-ITBP_PATH = '/usr/share/itbp/v1.0/root/rules'
 ITBP_PATH = '../../../root/rules'
+ITBP_PATH = '/usr/share/itbp/v1.0/root/rules'
 HOST = '127.0.0.1:5000'
 
 class RuleSetDb(object):
@@ -69,7 +69,7 @@ class RuleSetDb(object):
             for rule in rulenames:
                 if rule not in self.rulesets:
                     self.rulesets[rule] = []
-                self.rulesets[rule].append(relpath)
+                self.rulesets[rule].append(relpath.lower())
 
     @staticmethod
     def _dir_attrs(dirname):
@@ -79,12 +79,12 @@ class RuleSetDb(object):
         for dirname in dirs:
             (prefix, suffix) = os.path.splitext(dirname)
             if suffix != '':
-                attrs[suffix] = prefix
+                attrs[suffix] = prefix.lower()
             # The last two components may be osname (like redhat) and release
             elif 'osname' not in attrs:
-                attrs['osname'] = prefix
+                attrs['osname'] = prefix.lower()
             elif 'release' not in attrs:
-                attrs['release'] = prefix
+                attrs['release'] = prefix.lower()
         return attrs
 
     @staticmethod
@@ -127,24 +127,17 @@ def validate_params(queryparms):
     Release and osname are optional components in the path
     osname, tipname, and release don't have postfixes
     tipname can have capitals
-    I trust ITBP_PATH since it is set by the person running the server'''
-    app_path = secure_filename(queryparms.get('app', '').lower()) + '.app'
-    domain_path = secure_filename(queryparms.get('domain', '').lower()) \
-            + '.domain'
-    class_path = secure_filename(queryparms.get('class', '').lower()) + '.class'
-    os_path = secure_filename(queryparms.get('os', '').lower()) + '.os'
-    osname_path = secure_filename(queryparms.get('osname', '').lower())
-    release_path = secure_filename(queryparms.get('release', '').lower())
-    tipname_path = secure_filename(queryparms.get('tipname', ''))
-    response_path = os.path.join(app_path, domain_path, class_path, os_path)
-    if not osname_path == "":
-        response_path = os.path.join(response_path, osname_path)
-    if not release_path == "":
-        response_path = os.path.join(response_path, release_path)
-    temp_path = os.path.join(response_path, tipname_path)
-    response_path = os.path.normpath(temp_path)
-    #print queryparms
-    response_path = ruledb.select_rule(queryparms)
+    I trust ITBP_PATH since it is set by the person running the server.'''
+    safeparms = {}
+    for name in queryparms:
+        safename = secure_filename(name)
+        safeparms[safename] = secure_filename(queryparms.get(name))
+        if safename != 'tipname':
+            safeparms[safename] = safeparms[safename].lower()
+    #print safeparms
+    response_path = ruledb.select_rule(safeparms)
+    if response_path is None:
+        return None
     #print response_path
     response_path = os.path.join(app.config['ITBP_PATH'], response_path)
 
@@ -176,7 +169,7 @@ def showjson():
     resp = Response(response=dat, status=200, mimetype='application/json')
     return resp
 
-ttpat=re.compile('^<br>(#.*)$', re.MULTILINE)
+ttpat=re.compile('^<br>([#$] .*)$', re.MULTILINE)
 def html_transform(dobj):
     '''Transform the dict-like object into a more html-friendly form'''
     for key in dobj:
@@ -200,7 +193,7 @@ def show():
     We are currently restricted to showing one tip per HTML request.
     '''
     itbpfilename = validate_params(request.args)
-    if not os.path.isfile(itbpfilename):
+    if itbpfilename is None or not os.path.isfile(itbpfilename):
         abort(404)
     (startpath, tipfilename) = os.path.split(itbpfilename)
     tipfile = open(itbpfilename, 'r')
