@@ -143,7 +143,9 @@ def validate_params(queryparms):
         response_path = os.path.join(response_path, release_path)
     temp_path = os.path.join(response_path, tipname_path)
     response_path = os.path.normpath(temp_path)
+    #print queryparms
     response_path = ruledb.select_rule(queryparms)
+    #print response_path
     response_path = os.path.join(app.config['ITBP_PATH'], response_path)
 
     return response_path
@@ -194,7 +196,8 @@ def html_transform(dobj):
 def show():
     '''Prototype code for showing a human readable HTML rendention
     of and IT Best Practices criteria.
-    They all return apparent success, just very poor HTML.
+    They all return apparent success, just very simple HTML.
+    We are currently restricted to showing one tip per HTML request.
     '''
     itbpfilename = validate_params(request.args)
     if not os.path.isfile(itbpfilename):
