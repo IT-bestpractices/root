@@ -145,8 +145,8 @@ def validate_params(queryparms):
 
 @app.route('/')
 def hello_world():
-    'Dummy code for printing a static string on the root (/) page'
-    return 'Nothing to see here... Move along!'
+    'Render an IT Best Practices query form'
+    return render_template('itbpqueryform.html')
 
 @app.route('/itbp/v1.0/querymeta', methods=['GET'])
 def query_meta():
