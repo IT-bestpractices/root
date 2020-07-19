@@ -193,7 +193,7 @@ def show():
     '''
     itbpfilename = validate_params(request.args)
     if itbpfilename is None or not os.path.isfile(itbpfilename):
-        abort(404)
+        abort(404, f'{request.args} not found under {app.config["ITBP_PATH"]}')
     (startpath, tipfilename) = os.path.split(itbpfilename)
     tipfile = open(itbpfilename, 'r')
     dat = tipfile.read()
