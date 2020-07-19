@@ -1,0 +1,40 @@
+BP_VERSION=1.0.0
+IMAGE_TAG=it-bestpractices:${BP_VERSION}
+
+PYVERSION=python:3.8.4-alpine3.12
+PYVERSION=python:3.8.4-slim-buster
+PYVERSION=python:rc-buster # Latest release candidate
+GITGZ_URL=https://codeload.github.com/IT-bestpractices/root/tar.gz/master
+SRCDIR=/usr/src/it-bestpractices
+PYTHON=/usr/local/bin/python
+ROOTDIR=root-master
+
+# Copy the current master tip source from IT-bestpractices.info 
+TMPDIR=$(mktemp -d)
+trap "rm -fr ${TMPDIR}" 0
+TMPFILE=${TMPDIR}/it-bestpractices.tar.gz
+curl $GITGZ_URL > $TMPFILE
+# tar xzf $TMPFILE
+
+# FIXME!!>>
+# this file, requirements.in and requirmements.txt should be put into source control
+# at IT-bestpractices.info
+# <<FIXME!!
+
+# Now generate our docker container
+#
+#	Generating the Dockerfile in this way allows for more customization
+#	and generates fewer layers.
+#
+cat <<-!DOCKERFILE > Dockerfile
+	FROM ${PYVERSION}
+	RUN mkdir -p $SRCDIR
+	WORKDIR $SRCDIR
+	COPY requirements.txt $SRCDIR
+	RUN $PYTHON -m pip install -r requirements.txt
+	COPY $ROOTDIR $SRCDIR
+        
+	CMD [ "$PYTHON", "tools/viewer/itbp.py" ]
+	!DOCKERFILE
+	
+docker build -t $IMAGE_TAG .
