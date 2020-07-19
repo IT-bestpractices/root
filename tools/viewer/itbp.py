@@ -119,8 +119,7 @@ class RuleSetDb(object):
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('ITBP_SETTINGS', silent=True)
-ruledb = RuleSetDb(app.config['ITBP_PATH'])
-ruledb = RuleSetDb('../../../root/rules')
+ruledb = RuleSetDb(app.config['ITBP_PATH'] if 'ITBP_PATH' in app.config else '../../../root/rules')
 
 def validate_params(queryparms):
     '''Parse the input query to find the path
