@@ -175,7 +175,7 @@ def html_transform(dobj):
         if key in ('tags'):
             continue
         val = dobj[key]
-        if isinstance(val, (str, unicode)):
+        if isinstance(val, str):
            if key in ('check', 'fix', 'long_description'):
                 val = val.replace('\n', '\n<br>')
                 val = ttpat.sub(r'<br><tt>\1</tt>', val)
