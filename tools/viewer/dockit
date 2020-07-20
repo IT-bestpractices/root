@@ -29,12 +29,14 @@ curl $GITGZ_URL > $TMPFILE
 cat <<-!DOCKERFILE > Dockerfile
 	FROM ${PYVERSION}
 	RUN mkdir -p $SRCDIR
+	ENV ITBP_PATH $SRCDIR/rules
 	WORKDIR $SRCDIR
-	COPY requirements.txt $SRCDIR
+	COPY requirements.txt $ROOTDIR $SRCDIR/
 	RUN $PYTHON -m pip install -r requirements.txt
-	COPY $ROOTDIR $SRCDIR
         
-	CMD [ "$PYTHON", "tools/viewer/itbp.py" ]
+	CMD [ "$PYTHON", "$SRCDIR/tools/viewer/itbp.py" ]
 	!DOCKERFILE
 	
+echo "ITBP_CONFIG=$CONFIG"
+echo "ITBP_PATH = $SRCDIR/rules" >$SRCDIR/
 docker build -t $IMAGE_TAG .

@@ -37,8 +37,7 @@ from werkzeug.utils import secure_filename
 #configuration
 DEBUG = False
 TESTING = False
-ITBP_PATH = '../../../root/rules'
-ITBP_PATH = '/usr/share/itbp/v1.0/root/rules'
+ITBP_PATH = '/usr/src/itbp/rules/'
 HOST = '127.0.0.1:5000'
 
 class RuleSetDb(object):
@@ -119,7 +118,7 @@ class RuleSetDb(object):
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('ITBP_SETTINGS', silent=True)
-ruledb = RuleSetDb(app.config['ITBP_PATH'] if 'ITBP_PATH' in app.config else '../../../root/rules')
+ruledb = RuleSetDb(sys.environ.get('ITBP_PATH', ITBP_PATH))
 
 def validate_params(queryparms):
     '''Parse the input query to find the path
