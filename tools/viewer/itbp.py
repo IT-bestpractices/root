@@ -38,7 +38,7 @@ from werkzeug.utils import secure_filename
 #configuration
 DEBUG = False
 TESTING = False
-ITBP_PATH = '/usr/src/itbp/rules/'
+ITBP_PATH = '/usr/src/it-bestpractices/rules/'
 HOST = '127.0.0.1:5000'
 
 class RuleSetDb(object):

@@ -31,7 +31,7 @@ cat <<-!DOCKERFILE > Dockerfile
 	RUN mkdir -p $SRCDIR
 	ENV ITBP_PATH $SRCDIR/rules
 	WORKDIR $SRCDIR
-	COPY requirements.txt $ROOTDIR $SRCDIR/
+	ADD requirements.txt $ROOTDIR $SRCDIR/
 	RUN $PYTHON -m pip install -r requirements.txt
         
 	CMD [ "$PYTHON", "$SRCDIR/tools/viewer/itbp.py" ]
