@@ -28,7 +28,8 @@
 Prototype code for providing a REST interface for the IT Best Practices project.
 '''
 import sys
-import os, os.path
+import os
+import os.path
 import re
 sys.path.append('..')
 from flask import Flask, request, render_template, json, Response, abort
@@ -118,7 +119,7 @@ class RuleSetDb(object):
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('ITBP_SETTINGS', silent=True)
-ruledb = RuleSetDb(sys.environ.get('ITBP_PATH', ITBP_PATH))
+ruledb = RuleSetDb(os.environ.get('ITBP_PATH', ITBP_PATH))
 
 def validate_params(queryparms):
     '''Parse the input query to find the path

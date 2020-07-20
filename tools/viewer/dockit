@@ -14,7 +14,7 @@ TMPDIR=$(mktemp -d)
 trap "rm -fr ${TMPDIR}" 0
 TMPFILE=${TMPDIR}/it-bestpractices.tar.gz
 curl $GITGZ_URL > $TMPFILE
-# tar xzf $TMPFILE
+tar xzf $TMPFILE
 
 # FIXME!!>>
 # this file, requirements.in and requirmements.txt should be put into source control
