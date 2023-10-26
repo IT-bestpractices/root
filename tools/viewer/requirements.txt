@@ -28,5 +28,5 @@ more-itertools==8.4.0
     #   jaraco-functools
 six==1.15.0
     # via cheroot
-werkzeug==2.3.3
+werkzeug==3.0.1
     # via flask
